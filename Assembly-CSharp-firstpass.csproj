@@ -41,26 +41,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Folder Include="Assets\Plugins\Sirenix\Odin Inspector\Assets" />
-     <Folder Include="Assets\Plugins\Sirenix\Odin Inspector\Config\Resources" />
-     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.xml" />
-     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.xml" />
-     <Folder Include="Assets\Plugins\Sirenix\Assemblies" />
-     <Folder Include="Assets\Plugins\Sirenix\Odin Inspector\Modules" />
      <Folder Include="Assets\Plugins" />
-     <Folder Include="Assets\Plugins\Sirenix\Odin Inspector\Config" />
-     <Folder Include="Assets\Plugins\Sirenix\Odin Inspector\Config\Resources\Sirenix" />
-     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
-     <Folder Include="Assets\Plugins\Sirenix\Assemblies\NoEmitAndNoEditor" />
-     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.xml" />
-     <Folder Include="Assets\Plugins\Sirenix\Demos" />
-     <None Include="Assets\Plugins\Sirenix\Readme.txt" />
-     <Folder Include="Assets\Plugins\Sirenix\Assemblies\NoEditor" />
-     <None Include="Assets\Plugins\Sirenix\Assemblies\link.xml" />
-     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.xml" />
-     <Folder Include="Assets\Plugins\Sirenix" />
-     <Folder Include="Assets\Plugins\Sirenix\Odin Inspector" />
-     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.xml" />
+     <Folder Include="Assets\Plugins\URP\Settings" />
+     <Folder Include="Assets\Plugins\URP" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
