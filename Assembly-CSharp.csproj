@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Managers\BuildingManager.cs" />
      <Compile Include="Assets\Scripts\Managers\EconomyManager.cs" />
      <Compile Include="Assets\Scripts\ExampleClass.cs" />
+     <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Map\HexTile.cs" />
      <Compile Include="Assets\Scripts\DifficultySetting.cs" />
      <Folder Include="Assets" />
