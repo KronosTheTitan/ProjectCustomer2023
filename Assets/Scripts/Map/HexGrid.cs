@@ -84,7 +84,7 @@ namespace Map
 
         public void ClearGrid()
         {
-            while (_generatedTiles.Count != 0)
+            while (_generatedTiles.Count > 0)
             {
                 HexTile tile = _generatedTiles[0];
                 _generatedTiles.Remove(_generatedTiles[0]);

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b12ffc1a8b35664199bce5336f88e8f, type: 3}
+  m_Name: Empty
+  m_EditorClassIdentifier: 
+  IsBurnable: 0
+  IsWaterSource: 0
+  CanRecover: 0
+  burnTime: 0
+  recoveryTime: 0
+  gfxNeutral: {fileID: 1966152397863634463, guid: 12ae75cc7b8f14e4786b5212996927e5, type: 3}
+  gfxBurning: {fileID: 3286271890560108552, guid: f119bdb256f419b4f9928b9a2cdd55e9, type: 3}
+  gfxRecovering: {fileID: 3286271890560108552, guid: 6346504313d11764aa9073a13488be75, type: 3}

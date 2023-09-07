@@ -13,3 +13,20 @@ MonoBehaviour:
   m_Name: Normal
   m_EditorClassIdentifier: 
   campsiteIncome: 100
+  firePenalty: 10
+  tileCost: 50
+  bulldozeCost: 30
+  extinguishCost: 100
+  gracePeriod: 2
+  randomFireChance: 13
+  fireSpreadChancesSetup:
+  - type: {fileID: 11400000, guid: 3895f57a472a0ce4d900df3febee320f, type: 2}
+    chance: 0
+  - type: {fileID: 11400000, guid: 45f59e6f2abe8e04f9c8c7358d35ae07, type: 2}
+    chance: 0
+  - type: {fileID: 11400000, guid: 466f6b11eb213da4c9394ad6cbfb2593, type: 2}
+    chance: 13
+  - type: {fileID: 11400000, guid: 6fbf2caaad3ee0142b557e4e01bf2b4d, type: 2}
+    chance: 17
+  - type: {fileID: 11400000, guid: da81dce6cee16f04f965b24a76bc0f74, type: 2}
+    chance: 0

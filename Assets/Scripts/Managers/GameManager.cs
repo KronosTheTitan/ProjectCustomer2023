@@ -24,20 +24,26 @@ namespace Managers
         [SerializeField] private FireManager fireManager;
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private UIManager uiManager;
-        
         [SerializeField] private DifficultySetting difficulty;
+        [SerializeField] private int turnNumber = 1;
 
         public EconomyManager EconomyManager => economyManager;
         public FireManager FireManager => fireManager;
         public BuildingManager BuildingManager => buildingManager;
         public UIManager UIManager => uiManager;
-        
+        public int TurnNumber => turnNumber;
         public DifficultySetting Difficulty => difficulty;
+
+        public delegate void NextTurnDelegate();
+        public event NextTurnDelegate OnNextTurn;
 
         public void NextTurn()
         {
             economyManager.ReceiveIncome();
-            fireManager.SpreadFire();
+            OnNextTurn?.Invoke();
+            if(!fireManager.SpreadFire())
+                fireManager.StartRandomFire();
+            turnNumber++;
         }
     }
 }

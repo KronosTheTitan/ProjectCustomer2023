@@ -183,9 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 6401435909535804652}
-  movementSpeedNormal: 0
+  movementSpeedNormal: 1
   movementSpeedFast: 0
-  movementTime: 0
+  movementTime: 1
   rotationAmount: 0
   zoomAmount: {x: 0, y: 0, z: 0}
   newPosition: {x: 0, y: 0, z: 0}
@@ -194,6 +194,6 @@ MonoBehaviour:
   dragStartPosition: {x: 0, y: 0, z: 0}
   dragCurrentPosition: {x: 0, y: 0, z: 0}
   minimumPos: {x: 0, y: 0, z: 0}
-  maximumPos: {x: 0, y: 0, z: 0}
+  maximumPos: {x: 15, y: 0, z: 14.72242}
   minimumZoom: 0
   maximumZoom: 0
