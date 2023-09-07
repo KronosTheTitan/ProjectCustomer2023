@@ -1,22 +1,25 @@
-using UnityEngine;
 using Map;
 using UnityEditor;
+using UnityEngine;
 
-[CustomEditor(typeof(HexGrid))]
-public class ObjectBuilderEditor : Editor
+namespace Editor.Map
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(HexGrid))]
+    public class ObjectBuilderEditor : UnityEditor.Editor
     {
-        DrawDefaultInspector();
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
 
-        HexGrid hexGrid = (HexGrid)target;
-        if(GUILayout.Button("Clear!"))
-        {
-            hexGrid.ClearGrid();
-        }
-        if(GUILayout.Button("Generate!"))
-        {
-            hexGrid.GenerateTiles();
+            HexGrid hexGrid = (HexGrid)target;
+            if(GUILayout.Button("Clear!"))
+            {
+                hexGrid.ClearGrid();
+            }
+            if(GUILayout.Button("Generate!"))
+            {
+                hexGrid.GenerateTiles();
+            }
         }
     }
 }
