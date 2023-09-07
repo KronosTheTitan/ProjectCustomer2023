@@ -49,7 +49,7 @@ namespace Map
                     {
                         if (data.CanRecover)
                         {
-                            Extinguish();
+                            state = TileState.Recovering;
                         }
                         else
                         {
@@ -94,10 +94,7 @@ namespace Map
             GameManager.GetInstance().FireManager.BurningTiles.Remove(this);
             stateLastChangedDuringTurn = GameManager.GetInstance().TurnNumber;
 
-            if (data.CanRecover)
-                state = TileState.Recovering;
-            else
-                state = TileState.Neutral;
+            state = TileState.Neutral;
             
             UpdateGFX();
         }
