@@ -1,0 +1,5 @@
+<map id="Managers.FireManager" name="Managers.FireManager">
+<area shape="rect" id="Node000001" title="Manages the spread of fire in the game." alt="" coords="5,80,160,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="28,5,137,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,47,85,80,80,80,80,47"/>
+</map>

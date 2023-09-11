@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['chance_0',['chance',['../struct_tile_chance_pair.html#a49e203fa25f849d53922daf40f2d8963',1,'TileChancePair']]]
+  ['adjacenttiles_0',['adjacentTiles',['../class_map_1_1_hex_tile.html#a464ddccb6e5e58ceb96197aa1753fffd',1,'Map::HexTile']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exampleclass_0',['ExampleClass',['../class_example_class.html',1,'']]]
+  ['difficultysetting_0',['DifficultySetting',['../class_difficulty_setting.html',1,'']]]
 ];

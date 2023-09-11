@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['firespreadchances_0',['FireSpreadChances',['../class_difficulty_setting.html#a31b7297c3c1a5662a04345c01d134638',1,'DifficultySetting']]]
+  ['burntime_0',['burnTime',['../class_map_1_1_tile_type.html#a6dfcacc93d74c9f67f1ac0debd0f72bc',1,'Map::TileType']]]
 ];

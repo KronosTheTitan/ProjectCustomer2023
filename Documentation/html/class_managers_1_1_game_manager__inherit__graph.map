@@ -1,0 +1,5 @@
+<map id="Managers.GameManager" name="Managers.GameManager">
+<area shape="rect" id="Node000001" title="Manages the game logic and contains references to other manager classes." alt="" coords="5,80,173,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="34,5,144,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,47,92,80,86,80,86,47"/>
+</map>

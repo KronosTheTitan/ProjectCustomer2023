@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['tilechancepair_0',['TileChancePair',['../struct_tile_chance_pair.html',1,'']]],
-  ['tilecost_1',['TileCost',['../class_difficulty_setting.html#a73cc22c1c5cbeff21831cc30b194905c',1,'DifficultySetting']]],
-  ['type_2',['type',['../struct_tile_chance_pair.html#aee4416542c200e32e8fb42dbb66485dd',1,'TileChancePair']]]
+  ['managers_0',['Managers',['../namespace_managers.html',1,'']]],
+  ['map_1',['Map',['../namespace_map.html',1,'']]],
+  ['money_2',['Money',['../class_managers_1_1_economy_manager.html#a7363f71a10187e7c109a1ee6bfb16b9c',1,'Managers::EconomyManager']]]
 ];

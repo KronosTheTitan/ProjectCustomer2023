@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bulldozecost_0',['BulldozeCost',['../class_difficulty_setting.html#adf347eb09f706e1a851d260048cde6d1',1,'DifficultySetting']]]
+  ['adjacenttiles_0',['adjacentTiles',['../class_map_1_1_hex_tile.html#a464ddccb6e5e58ceb96197aa1753fffd',1,'Map::HexTile']]]
 ];

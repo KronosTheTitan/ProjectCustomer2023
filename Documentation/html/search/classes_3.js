@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tilechancepair_0',['TileChancePair',['../struct_tile_chance_pair.html',1,'']]]
+  ['economymanager_0',['EconomyManager',['../class_managers_1_1_economy_manager.html',1,'Managers']]],
+  ['exampleclass_1',['ExampleClass',['../class_example_class.html',1,'']]]
 ];

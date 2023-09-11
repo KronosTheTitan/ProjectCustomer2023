@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['randomfirechance_0',['RandomFireChance',['../class_difficulty_setting.html#ac3ec84286508c27a224a1e1b60f94c3b',1,'DifficultySetting']]]
+  ['graceperiod_0',['GracePeriod',['../class_difficulty_setting.html#a01879eda55a50dec8f6cda2771733a2d',1,'DifficultySetting']]]
 ];

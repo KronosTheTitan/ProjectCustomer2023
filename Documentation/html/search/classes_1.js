@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['difficultysetting_0',['DifficultySetting',['../class_difficulty_setting.html',1,'']]]
+  ['cameracontroller_0',['CameraController',['../class_camera_controller.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cameracontroller_0',['CameraController',['../class_camera_controller.html',1,'']]]
+  ['buildingmanager_0',['BuildingManager',['../class_managers_1_1_building_manager.html',1,'Managers']]]
 ];

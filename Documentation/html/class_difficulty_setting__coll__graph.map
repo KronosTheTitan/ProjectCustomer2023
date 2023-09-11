@@ -1,0 +1,7 @@
+<map id="DifficultySetting" name="DifficultySetting">
+<area shape="rect" id="Node000001" title="A ScriptableObject representing game difficulty settings." alt="" coords="98,80,209,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,123,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,39,140,78,136,82,89,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="147,5,341,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,43,171,82,167,78,215,39"/>
+</map>
