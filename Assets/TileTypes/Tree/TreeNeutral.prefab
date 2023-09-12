@@ -71,11 +71,12 @@ MonoBehaviour:
   - {fileID: 4995781465023219190}
   - {fileID: 5266216632139373835}
   - {fileID: 318967512662113012}
-  objectPrefab: {fileID: 7968206245775971825, guid: fcc0ad3fcd3532249a7ed342ea9bcffa, type: 3}
-  minimumScale: 0.6
-  maximumScale: 1.4
-  randomOffset: 0.1
-  objectSpawnChance: 0.8
+  objectSpawnInfoList:
+  - objectPrefab: {fileID: 7968206245775971825, guid: fcc0ad3fcd3532249a7ed342ea9bcffa, type: 3}
+    spawnChance: 0.8
+    minimumScale: 0.6
+    maximumScale: 1.4
+    randomOffset: 0.1
 --- !u!1001 &232757566128793645
 PrefabInstance:
   m_ObjectHideFlags: 0
