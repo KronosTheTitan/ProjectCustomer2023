@@ -6,16 +6,27 @@ using Random = UnityEngine.Random;
 
 namespace Managers
 {
+    /// <summary>
+    /// Manages the placement and interaction of building tiles on the game map.
+    /// </summary>
     public class BuildingManager : MonoBehaviour
     {
+        /// <summary>
+        /// The currently targeted hex tile.
+        /// </summary>
         public HexTile targetedTile;
+
         [SerializeField] private TileType empty;
         [SerializeField] private TileType campsite;
+
+        /// <summary>
+        /// Gets the TileType for empty tiles.
+        /// </summary>
         public TileType Empty => empty;
 
         [SerializeField] private TileType[] potentialTiles;
         [SerializeField] private TileType selectedTile;
-        
+
         private enum BuildOptions
         {
             PlaceTile,
@@ -25,16 +36,16 @@ namespace Managers
         }
 
         [SerializeField] private BuildOptions selectedOption = BuildOptions.None;
-        
+
         private void Update()
         {
-            if(selectedOption == BuildOptions.None)
+            if (selectedOption == BuildOptions.None)
                 return;
-            
-            if(!Input.GetMouseButton(0))
+
+            if (!Input.GetMouseButton(0))
                 return;
-            
-            if(targetedTile == null)
+
+            if (targetedTile == null)
                 return;
 
             switch (selectedOption)
@@ -51,76 +62,85 @@ namespace Managers
             }
         }
 
+        /// <summary>
+        /// Selects a random tile from the potential tiles list and prepares to place it.
+        /// </summary>
         public void SelectPlaceRandomTile()
         {
             int money = GameManager.GetInstance().EconomyManager.Money;
             int cost = GameManager.GetInstance().Difficulty.TileCost;
-            if(money < cost)
+            if (money < cost)
                 return;
-            
+
             GameManager.GetInstance().EconomyManager.RemoveMoney(cost);
-            
+
             selectedTile = potentialTiles[Random.Range(0, potentialTiles.Length - 1)];
             selectedOption = BuildOptions.PlaceTile;
         }
 
+        /// <summary>
+        /// Selects the bulldozer tool to remove tiles.
+        /// </summary>
         public void SelectBulldozer()
         {
             int money = GameManager.GetInstance().EconomyManager.Money;
             int cost = GameManager.GetInstance().Difficulty.BulldozeCost;
-            if(money < cost)
+            if (money < cost)
                 return;
-            
+
             GameManager.GetInstance().EconomyManager.RemoveMoney(cost);
-            
+
             selectedOption = BuildOptions.BulldozeTile;
         }
 
+        /// <summary>
+        /// Selects the extinguisher tool to extinguish burning tiles.
+        /// </summary>
         public void SelectExtinguisher()
         {
             int money = GameManager.GetInstance().EconomyManager.Money;
             int cost = GameManager.GetInstance().Difficulty.ExtinguishCost;
-            if(money < cost)
+            if (money < cost)
                 return;
-            
+
             GameManager.GetInstance().EconomyManager.RemoveMoney(cost);
-            
+
             selectedOption = BuildOptions.ExtinguishTile;
         }
 
         private void PlaceTile()
         {
-            if(targetedTile.state != HexTile.TileState.Empty)
+            if (targetedTile.state != HexTile.TileState.Empty)
                 return;
-            
+
             targetedTile.state = HexTile.TileState.Neutral;
             targetedTile.data = selectedTile;
 
-            if(targetedTile.data.IsBurnable)
+            if (targetedTile.data.IsBurnable)
                 GameManager.GetInstance().FireManager.BurnableTiles.Add(targetedTile);
-            
+
             if (targetedTile.data == campsite)
                 GameManager.GetInstance().EconomyManager.Campsites.Add(targetedTile);
-            
+
             targetedTile.UpdateGFX();
 
             selectedOption = BuildOptions.None;
         }
-        
+
         private void BulldozeTile()
         {
-            if(targetedTile.state != HexTile.TileState.Neutral && targetedTile.state != HexTile.TileState.Recovering)
+            if (targetedTile.state != HexTile.TileState.Neutral && targetedTile.state != HexTile.TileState.Recovering)
                 return;
 
             if (targetedTile.data == campsite)
                 GameManager.GetInstance().EconomyManager.Campsites.Remove(targetedTile);
 
-            if(targetedTile.data.IsBurnable)
+            if (targetedTile.data.IsBurnable)
                 GameManager.GetInstance().FireManager.BurnableTiles.Remove(targetedTile);
-            
+
             targetedTile.data = empty;
             targetedTile.state = HexTile.TileState.Empty;
-            
+
             targetedTile.UpdateGFX();
 
             selectedOption = BuildOptions.None;
@@ -128,9 +148,9 @@ namespace Managers
 
         private void ExtinguishTile()
         {
-            if(targetedTile.state != HexTile.TileState.Burning)
+            if (targetedTile.state != HexTile.TileState.Burning)
                 return;
-            
+
             targetedTile.Extinguish();
             selectedOption = BuildOptions.None;
         }
