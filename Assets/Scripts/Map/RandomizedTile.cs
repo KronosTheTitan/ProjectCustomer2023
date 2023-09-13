@@ -34,6 +34,9 @@ namespace Map
         [Range(0.0f, 0.3f)] public float randomOffset = 0.1f;
     }
 
+    /// <summary>
+    /// A class for managing randomized object spawning on tiles.
+    /// </summary>
     public class RandomizedTile : MonoBehaviour
     {
         /// <summary>
@@ -46,33 +49,75 @@ namespace Map
         /// </summary>
         [SerializeField] private List<ObjectSpawnInfo> objectSpawnInfoList;
 
-        /// <summary>
-        /// Called when the script starts.
-        /// </summary>
-        void Start()
+        // List to store the spawned objects on this tile.
+        private List<GameObject> spawnedObjects = new List<GameObject>();
+
+        private void Start ()
         {
-            if (objectSpawnPoints == null || objectSpawnPoints.Count == 0 || objectSpawnInfoList == null || objectSpawnInfoList.Count == 0)
+            // Check if the first spawn point is active and generate objects accordingly.
+            if (objectSpawnPoints[0].activeInHierarchy)
+            {
+                GenerateObjects();
+            }
+        }
+
+        /// <summary>
+        /// Generates objects on the tile based on spawn information and chances.
+        /// </summary>
+        public void GenerateObjects()
+        {
+            // Clear existing spawned objects
+            ClearSpawnedObjects();
+
+            // Check if there are valid spawn points and spawn info.
+            if (objectSpawnPoints == null || objectSpawnPoints.Count == 0 || 
+                objectSpawnInfoList == null || objectSpawnInfoList.Count == 0)
                 return;
 
             foreach (GameObject spawnPoint in objectSpawnPoints)
             {
+                bool spawnPointUsed = false; // Flag to track if spawn point was used
+
                 foreach (ObjectSpawnInfo spawnInfo in objectSpawnInfoList)
                 {
-                    if (Random.Range(0.0f, 1.0f) > spawnInfo.spawnChance)
-                        return;
+                    if (Random.Range(0.0f, 1.0f) < spawnInfo.spawnChance && !spawnPointUsed)
+                    {
+                        Vector3 spawnPosition = spawnPoint.transform.position;
+                        GameObject objectPrefab = spawnInfo.objectPrefab;
 
-                    Vector3 spawnPosition = spawnPoint.transform.position;
-                    GameObject objectPrefab = spawnInfo.objectPrefab;
-                    objectPrefab.transform.position = spawnPosition + new Vector3(spawnInfo.randomOffset, 0, spawnInfo.randomOffset);
-                    objectPrefab.transform.Rotate(Vector3.up, Random.Range(0, 360));
-                    objectPrefab.transform.localScale = Vector3.one * Random.Range(spawnInfo.minimumScale, spawnInfo.maximumScale);
-                    GameObject generatedObject = Instantiate(objectPrefab, gameObject.transform, true);
-                    break;
+                        // Apply random offset, rotation, and scale to the spawned object.
+                        objectPrefab.transform.position = spawnPosition + new Vector3(spawnInfo.randomOffset, 0, spawnInfo.randomOffset);
+                        objectPrefab.transform.Rotate(Vector3.up, Random.Range(0, 360));
+                        objectPrefab.transform.localScale = Vector3.one * Random.Range(spawnInfo.minimumScale, spawnInfo.maximumScale);
+
+                        // Instantiate the object as a child of this tile and add it to the list of spawned objects.
+                        GameObject generatedObject = Instantiate(objectPrefab, gameObject.transform, true);
+                        spawnedObjects.Add(generatedObject);
+
+                        spawnPointUsed = true;
+                    }
                 }
 
-                Destroy(spawnPoint);
+                // Hide the spawn point
+                spawnPoint.SetActive(false);
             }
-            objectSpawnPoints.Clear();
+        }
+
+        /// <summary>
+        /// Clears all spawned objects on the tile and resets the spawn points.
+        /// </summary>
+        public void ClearSpawnedObjects()
+        {
+            foreach (GameObject spawnPoint in objectSpawnPoints)
+            {
+                spawnPoint.SetActive(true);
+            }
+
+            foreach (GameObject spawnedObject in spawnedObjects)
+            {
+                DestroyImmediate(spawnedObject);
+            }
+            spawnedObjects.Clear();
         }
     }
 }
