@@ -136,8 +136,6 @@ namespace Map
         {
             ChangeTileState();
 
-            
-
             //if (state == TileState.Burning)
             //{
             //    gfx = Instantiate(data.gfxBurning, transform.position, quaternion.identity, transform);

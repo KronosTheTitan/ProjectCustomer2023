@@ -7,6 +7,9 @@ public class TreeController : MonoBehaviour
     [SerializeField] private GameObject burningTreeModel;
     [SerializeField] private GameObject treeModel;
 
+    [SerializeField] private float minimumDelay = 1.0f;
+    [SerializeField] private float maximumDelay = 3.0f;
+
     private void Start()
     {
         // Initially, deactivate the burning tree model
@@ -36,12 +39,13 @@ public class TreeController : MonoBehaviour
                 // Deactivate the burning tree model
                 burningTreeModel.SetActive(false);
                 treeModel.SetActive(true);
+
                 // Transition to the Neutral state
                 animator.SetTrigger("StartNeutral");
                 break;
             case TileState.Burning:
                 // Start the animation with a random delay
-                float randomDelay = Random.Range(1.0f, 3.0f); // Adjust the range as needed
+                float randomDelay = Random.Range(minimumDelay, maximumDelay);
                 Invoke("StartBurningAnimationWithDelay", randomDelay);
                 break;
             case TileState.Recovering:
