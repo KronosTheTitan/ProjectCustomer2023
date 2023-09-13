@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1371901473547922521}
   - component: {fileID: 7580003361653554755}
   m_Layer: 0
-  m_Name: WetlandsNeutral
+  m_Name: EmptyNeutral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5328162534053781222}
+  - {fileID: 6877322970587344782}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7580003361653554755
@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3286271890560108552}
   m_Mesh: {fileID: -2432090755550338912, guid: 496445c3a1c10b84ea3b69086f995ff6, type: 3}
---- !u!1001 &5655350037026142477
+--- !u!1001 &6411878682373343333
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -92,7 +92,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: e67b02a8042fe4348a5961c3d8237f46, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e162a24ee74421d43883912595ca2df2, type: 2}
+      objectReference: {fileID: 2100000, guid: 9dd097e0d7a066c4380f16991ba2b460, type: 2}
     - target: {fileID: 919132149155446097, guid: e67b02a8042fe4348a5961c3d8237f46, type: 3}
       propertyPath: m_Name
       value: BaseTile
@@ -102,8 +102,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e67b02a8042fe4348a5961c3d8237f46, type: 3}
---- !u!4 &5328162534053781222 stripped
+--- !u!4 &6877322970587344782 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e67b02a8042fe4348a5961c3d8237f46, type: 3}
-  m_PrefabInstance: {fileID: 5655350037026142477}
+  m_PrefabInstance: {fileID: 6411878682373343333}
   m_PrefabAsset: {fileID: 0}

@@ -60,10 +60,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Map\TileType.cs" />
     <Compile Include="Assets\Scripts\Map\HexGrid.cs" />
+    <Compile Include="Assets\Scripts\RandomColor.cs" />
     <Compile Include="Assets\Scripts\Managers\FireManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Managers\BuildingManager.cs" />
+    <Compile Include="Assets\Scripts\Map\RandomizedTile.cs" />
     <Compile Include="Assets\Scripts\Managers\EconomyManager.cs" />
     <Compile Include="Assets\Scripts\ExampleClass.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
