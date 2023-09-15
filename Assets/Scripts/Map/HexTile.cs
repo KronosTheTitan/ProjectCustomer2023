@@ -6,22 +6,45 @@ using UnityEngine;
 
 namespace Map
 {
+    /// <summary>
+    /// The possible states of the hexagonal tile.
+    /// </summary>
+    public enum TileState
+    {
+        Neutral,
+        Burning,
+        Recovering,
+        Empty
+    }
+
+    /// <summary>
+    /// Represents a hexagonal tile on the game map.
+    /// </summary>
     public class HexTile : MonoBehaviour
     {
-        public enum TileState
-        {
-            Neutral,
-            Burning,
-            Recovering,
-            Empty
-        }
-        
+        /// <summary>
+        /// List of adjacent hexagonal tiles.
+        /// </summary>
         public List<HexTile> adjacentTiles;
 
+        /// <summary>
+        /// The data associated with this tile.
+        /// </summary>
         public TileType data;
+
+        /// <summary>
+        /// The current state of the tile.
+        /// </summary>
         public TileState state = TileState.Empty;
+
+        /// <summary>
+        /// The turn number during which the state was last changed.
+        /// </summary>
         public int stateLastChangedDuringTurn;
 
+        /// <summary>
+        /// The visual representation of the tile.
+        /// </summary>
         public GameObject gfx;
 
         private void Start()
@@ -29,17 +52,20 @@ namespace Map
             GameManager.GetInstance().OnNextTurn += OnNextTurn;
 
             gameObject.SetActive(false);
-            
+
             foreach (HexTile tile in adjacentTiles)
             {
                 if (tile.state != TileState.Empty)
                     gameObject.SetActive(true);
             }
-            
-            if(state != TileState.Empty)
+
+            if (state != TileState.Empty)
                 gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// Called when a new turn begins.
+        /// </summary>
         public void OnNextTurn()
         {
             switch (state)
@@ -64,28 +90,31 @@ namespace Map
                     {
                         state = TileState.Neutral;
                         stateLastChangedDuringTurn = GameManager.GetInstance().TurnNumber;
-                        UpdateGFX();
+                        //UpdateGFX();
                     }
                     break;
             }
         }
 
         /// <summary>
-        /// Lights a tile on fire if possible
+        /// Lights a tile on fire if possible.
         /// </summary>
         public void Ignite()
         {
-            if(!data.IsBurnable)
+            if (!data.IsBurnable)
                 return;
-            if(state == TileState.Burning)
+            if (state == TileState.Burning)
                 return;
             GameManager.GetInstance().FireManager.BurningTiles.Add(this);
             stateLastChangedDuringTurn = GameManager.GetInstance().TurnNumber;
             state = TileState.Burning;
-            
+
             UpdateGFX();
         }
 
+        /// <summary>
+        /// Extinguishes the fire on the tile.
+        /// </summary>
         public void Extinguish()
         {
             if (state != TileState.Burning)
@@ -95,42 +124,55 @@ namespace Map
             stateLastChangedDuringTurn = GameManager.GetInstance().TurnNumber;
 
             state = TileState.Neutral;
-            
+
             UpdateGFX();
         }
 
+        /// <summary>
+        /// Updates the visual representation of the tile.
+        /// </summary>
         public void UpdateGFX()
         {
-            Destroy(gfx);
+            ChangeAnimatedTileState();
 
-            if (state == TileState.Burning)
-            {
-                gfx = Instantiate(data.gfxBurning, transform.position,quaternion.identity , transform);
-            }
+            //if (state == TileState.Burning)
+            //{
+            //    gfx = Instantiate(data.gfxBurning, transform.position, quaternion.identity, transform);
+            //}
 
-            if (state == TileState.Recovering)
-            {
-                gfx = Instantiate(data.gfxRecovering, transform.position,quaternion.identity , transform);
-            }
-
+            //if (state == TileState.Recovering)
+            //{
+            //    gfx = Instantiate(data.gfxRecovering, transform.position, quaternion.identity, transform);
+            //}
+            
             if (state == TileState.Neutral || state == TileState.Empty)
             {
-                gfx = Instantiate(data.gfxNeutral, transform.position,quaternion.identity , transform);
+                Destroy(gfx);
+                gfx = Instantiate(data.gfxNeutral, transform.position, quaternion.identity, transform);
             }
-            
+
             if (state != TileState.Empty)
-                foreach (HexTile tile in adjacentTiles) 
-                { 
-                    tile.gameObject.SetActive(true); 
-                }
+                foreach (HexTile tile in adjacentTiles) tile.gameObject.SetActive(true);
         }
-        
+
+        /// <summary>
+        /// Call this function when the tile state changes
+        /// </summary>
+        public void ChangeAnimatedTileState()
+        {
+            TreeController[] treeControllers = GetComponentsInChildren<TreeController>();
+            for (int i = 0; i < treeControllers.Length; i++)
+            {
+                treeControllers[i].OnTileStateChanged(state);
+            }
+        }
+
         private void OnDrawGizmos()
         {
             foreach (HexTile hexTile in adjacentTiles)
             {
                 if (hexTile.adjacentTiles.Contains(this))
-                    Gizmos.color = Color.green ;
+                    Gizmos.color = Color.green;
                 else
                     Gizmos.color = Color.red;
 
