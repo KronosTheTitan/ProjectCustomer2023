@@ -50,7 +50,7 @@ namespace Map
         [SerializeField] private List<ObjectSpawnInfo> objectSpawnInfoList;
 
         // List to store the spawned objects on this tile.
-        private List<GameObject> spawnedObjects = new List<GameObject>();
+        [SerializeField] private List<GameObject> spawnedObjects = new List<GameObject>();
 
         private void Start ()
         {

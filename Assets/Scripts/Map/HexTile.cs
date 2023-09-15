@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Managers;
 using Unity.Mathematics;
 using UnityEngine;
+using static Map.HexTile;
 
 namespace Map
 {
@@ -133,20 +134,21 @@ namespace Map
         /// </summary>
         public void UpdateGFX()
         {
-            Destroy(gfx);
+            ChangeTileState();
 
-            if (state == TileState.Burning)
-            {
-                gfx = Instantiate(data.gfxBurning, transform.position, quaternion.identity, transform);
-            }
+            //if (state == TileState.Burning)
+            //{
+            //    gfx = Instantiate(data.gfxBurning, transform.position, quaternion.identity, transform);
+            //}
 
-            if (state == TileState.Recovering)
-            {
-                gfx = Instantiate(data.gfxRecovering, transform.position, quaternion.identity, transform);
-            }
+            //if (state == TileState.Recovering)
+            //{
+            //    gfx = Instantiate(data.gfxRecovering, transform.position, quaternion.identity, transform);
+            //}
 
             if (state == TileState.Neutral || state == TileState.Empty)
             {
+                Destroy(gfx);
                 gfx = Instantiate(data.gfxNeutral, transform.position, quaternion.identity, transform);
             }
 
@@ -155,6 +157,18 @@ namespace Map
                 {
                     tile.gameObject.SetActive(true);
                 }
+        }
+
+        /// <summary>
+        /// Call this function when the tile state changes
+        /// </summary>
+        public void ChangeTileState()
+        {
+            TreeController[] treeControllers = GetComponentsInChildren<TreeController>();
+            for (int i = 0; i < treeControllers.Length; i++)
+            {
+                treeControllers[i].OnTileStateChanged(state);
+            }
         }
 
         private void OnDrawGizmos()

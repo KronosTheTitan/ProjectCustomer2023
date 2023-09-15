@@ -77,6 +77,7 @@ MonoBehaviour:
     minimumScale: 0.6
     maximumScale: 1.4
     randomOffset: 0.1
+  spawnedObjects: []
 --- !u!1001 &232757566128793645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88,6 +89,10 @@ PrefabInstance:
     - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_Name
       value: SpawnPoint (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4289192242046266383, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_LocalPosition.x
@@ -156,6 +161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4289192242046266383, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.625
@@ -222,6 +231,10 @@ PrefabInstance:
     - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_Name
       value: SpawnPoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4289192242046266383, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_LocalPosition.x
@@ -290,6 +303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4289192242046266383, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.197
@@ -357,6 +374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4289192242046266383, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.305
@@ -423,6 +444,10 @@ PrefabInstance:
     - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_Name
       value: SpawnPoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4289192242046266383, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_LocalPosition.x
@@ -557,6 +582,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoint (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4289192242046266383, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.168
@@ -623,6 +652,10 @@ PrefabInstance:
     - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_Name
       value: SpawnPoint (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3952637675622624441, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4289192242046266383, guid: c810d14ae27a9344984b2e8f986c4b46, type: 3}
       propertyPath: m_LocalPosition.x
