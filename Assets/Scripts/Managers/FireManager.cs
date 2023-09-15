@@ -51,9 +51,9 @@ namespace Managers
             // Attempt to ignite tiles based on fire spread chances.
             foreach (HexTile tile in potentialFireSpreads)
             {
-                if (tile.state == HexTile.TileState.Empty)
+                if (tile.state == TileState.Empty)
                     continue;
-                if (tile.state == HexTile.TileState.Recovering)
+                if (tile.state == TileState.Recovering)
                     continue;
 
                 int roll = Random.Range(0, 100);

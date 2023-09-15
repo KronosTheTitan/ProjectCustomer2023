@@ -3,26 +3,25 @@ using System.Collections.Generic;
 using Managers;
 using Unity.Mathematics;
 using UnityEngine;
-using static Map.HexTile;
 
 namespace Map
 {
+    /// <summary>
+    /// The possible states of the hexagonal tile.
+    /// </summary>
+    public enum TileState
+    {
+        Neutral,
+        Burning,
+        Recovering,
+        Empty
+    }
+
     /// <summary>
     /// Represents a hexagonal tile on the game map.
     /// </summary>
     public class HexTile : MonoBehaviour
     {
-        /// <summary>
-        /// The possible states of the hexagonal tile.
-        /// </summary>
-        public enum TileState
-        {
-            Neutral,
-            Burning,
-            Recovering,
-            Empty
-        }
-
         /// <summary>
         /// List of adjacent hexagonal tiles.
         /// </summary>
@@ -91,7 +90,7 @@ namespace Map
                     {
                         state = TileState.Neutral;
                         stateLastChangedDuringTurn = GameManager.GetInstance().TurnNumber;
-                        UpdateGFX();
+                        //UpdateGFX();
                     }
                     break;
             }
@@ -134,7 +133,7 @@ namespace Map
         /// </summary>
         public void UpdateGFX()
         {
-            ChangeTileState();
+            ChangeAnimatedTileState();
 
             //if (state == TileState.Burning)
             //{
@@ -145,7 +144,7 @@ namespace Map
             //{
             //    gfx = Instantiate(data.gfxRecovering, transform.position, quaternion.identity, transform);
             //}
-
+            
             if (state == TileState.Neutral || state == TileState.Empty)
             {
                 Destroy(gfx);
@@ -153,16 +152,13 @@ namespace Map
             }
 
             if (state != TileState.Empty)
-                foreach (HexTile tile in adjacentTiles)
-                {
-                    tile.gameObject.SetActive(true);
-                }
+                foreach (HexTile tile in adjacentTiles) tile.gameObject.SetActive(true);
         }
 
         /// <summary>
         /// Call this function when the tile state changes
         /// </summary>
-        public void ChangeTileState()
+        public void ChangeAnimatedTileState()
         {
             TreeController[] treeControllers = GetComponentsInChildren<TreeController>();
             for (int i = 0; i < treeControllers.Length; i++)
