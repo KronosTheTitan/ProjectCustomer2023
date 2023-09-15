@@ -136,16 +136,6 @@ namespace Map
         {
             ChangeTileState();
 
-            //if (state == TileState.Burning)
-            //{
-            //    gfx = Instantiate(data.gfxBurning, transform.position, quaternion.identity, transform);
-            //}
-
-            //if (state == TileState.Recovering)
-            //{
-            //    gfx = Instantiate(data.gfxRecovering, transform.position, quaternion.identity, transform);
-            //}
-
             if (state == TileState.Neutral || state == TileState.Empty)
             {
                 Destroy(gfx);
@@ -162,7 +152,7 @@ namespace Map
         /// <summary>
         /// Call this function when the tile state changes
         /// </summary>
-        public void ChangeTileState()
+        private void ChangeTileState()
         {
             TreeController[] treeControllers = GetComponentsInChildren<TreeController>();
             for (int i = 0; i < treeControllers.Length; i++)
