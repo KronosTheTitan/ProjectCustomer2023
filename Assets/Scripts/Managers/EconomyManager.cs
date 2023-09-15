@@ -33,7 +33,7 @@ namespace Managers
 
             foreach (HexTile hexTile in campsites)
             {
-                if (hexTile.state != HexTile.TileState.Neutral)
+                if (hexTile.state != TileState.Neutral)
                     continue;
                 money += GameManager.GetInstance().Difficulty.CampsiteIncome;
             }

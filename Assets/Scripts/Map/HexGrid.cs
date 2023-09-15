@@ -1,7 +1,10 @@
+using Managers;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Map
 {
@@ -10,6 +13,8 @@ namespace Map
     /// </summary>
     public class HexGrid : MonoBehaviour
     {
+        public List<HexTile> randomTilesToGenerate = new List<HexTile>();
+
         [SerializeField] private int width;
         [SerializeField] private int height;
 
@@ -17,16 +22,41 @@ namespace Map
         private HexTile[,] _grid;
 
         [SerializeField] private HexTile baseTile;
+
         [SerializeField] private float offsetXAxis = 0.866025f; // Horizontal offset between hex tiles.
         [SerializeField] private float offsetYAxis = 1.5f;     // Vertical offset between hex tiles.
+
+        private void Start ()
+        {
+            foreach (HexTile tile in _generatedTiles)
+            {
+                GameManager.GetInstance().BuildingManager.PlaceTile(tile);
+            }
+        }
 
         /// <summary>
         /// Generates hexagonal tiles and populates the grid.
         /// </summary>
         public void GenerateTiles()
         {
-            ClearGrid();
+            GenerateGrid(() => baseTile);
+        }
 
+        /// <summary>
+        /// Generates hexagonal tiles with random specified tile types and populates the grid.
+        /// </summary>
+        public void GenerateRandomGrid()
+        {
+            GenerateGrid(() => randomTilesToGenerate[Random.Range(0, randomTilesToGenerate.Count)]);
+        }
+
+        /// <summary>
+        /// Generates a hexagonal grid of tiles and populates it using the provided tile factory.
+        /// </summary>
+        /// <param name="tileFactory">A delegate that creates a HexTile instance.</param>
+        private void GenerateGrid(Func<HexTile> tileFactory)
+        {
+            ClearGrid();
             _grid = new HexTile[width, height];
 
             for (int x = 0; x < width; x++)
@@ -35,6 +65,7 @@ namespace Map
                 {
                     Vector3 position;
 
+                    // Calculate the position of the tile based on hexagonal grid coordinates.
                     if (x % 2f == 0f)
                     {
                         position = new Vector3(x * offsetXAxis, 0, y * offsetYAxis);
@@ -44,47 +75,53 @@ namespace Map
                         position = new Vector3(x * offsetXAxis, 0, y * offsetYAxis + offsetYAxis / 2);
                     }
 
-                    HexTile tile = Instantiate(baseTile, position, quaternion.identity, transform);
+                    // Create a new HexTile using the provided factory method.
+                    HexTile tile = Instantiate(tileFactory(), position, Quaternion.identity, transform);
                     _generatedTiles.Add(tile);
 
                     _grid[x, y] = tile;
 
-                    try
-                    {
-                        ConnectTiles(tile, _grid[x - 1, y]);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                    }
+                    // Connect the neighboring tiles.
+                    TryConnectTiles(tile, x, y, x % 2f == 0f);
 
-                    try
-                    {
-                        if (x % 2f == 0f)
-                        {
-                            ConnectTiles(tile, _grid[x - 1, y - 1]);
-                        }
-                        else
-                        {
-                            ConnectTiles(tile, _grid[x - 1, y + 1]);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                    }
-
-                    try
-                    {
-                        ConnectTiles(tile, _grid[x, y - 1]);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                    }
-
+                    // Set the name of the tile based on its grid coordinates.
                     tile.name = new Vector2(x, y).ToString();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Tries to connect the given tile with its adjacent tiles.
+        /// </summary>
+        /// <param name="tile">The tile to connect.</param>
+        /// <param name="x">The x-coordinate of the tile in the grid.</param>
+        /// <param name="y">The y-coordinate of the tile in the grid.</param>
+        /// <param name="isEvenColumn">Indicates if the current column is even.</param>
+        private void TryConnectTiles(HexTile tile, int x, int y, bool isEvenColumn)
+        {
+            try
+            {
+                // Connect the tile with its left neighbor.
+                ConnectTiles(tile, _grid[x - 1, y]);
+
+                if (isEvenColumn)
+                {
+                    // Connect the tile with its top-left neighbor in even columns.
+                    ConnectTiles(tile, _grid[x - 1, y - 1]);
+                }
+                else
+                {
+                    // Connect the tile with its top-right neighbor in odd columns.
+                    ConnectTiles(tile, _grid[x - 1, y + 1]);
+                }
+
+                // Connect the tile with its top neighbor.
+                ConnectTiles(tile, _grid[x, y - 1]);
+            }
+            catch (Exception e)
+            {
+                // Handle any exceptions that may occur during connection (e.g., out-of-bounds).
+                Console.WriteLine(e);
             }
         }
 

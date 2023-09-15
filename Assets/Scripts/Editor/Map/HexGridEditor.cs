@@ -32,6 +32,21 @@ namespace Editor.Map
             {
                 hexGrid.GenerateTiles();
             }
+
+            // Check if the randomTilesToGenerate list is populated.
+            if (hexGrid.randomTilesToGenerate != null && hexGrid.randomTilesToGenerate.Count > 0 && hexGrid.randomTilesToGenerate[0] != null)
+            {
+                // Button for generating random tiles only if the list is populated.
+                if (GUILayout.Button("Generate random full grid!"))
+                {
+                    hexGrid.GenerateRandomGrid();
+                }
+            }
+            else
+            {
+                // Show a label or message when the list is empty.
+                EditorGUILayout.LabelField("No random tiles to generate, add tiles to list.");
+            }
         }
     }
 }

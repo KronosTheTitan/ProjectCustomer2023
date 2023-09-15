@@ -51,7 +51,7 @@ namespace Managers
             switch (selectedOption)
             {
                 case BuildOptions.PlaceTile:
-                    PlaceTile();
+                    PlaceTile(targetedTile);
                     break;
                 case BuildOptions.BulldozeTile:
                     BulldozeTile();
@@ -108,28 +108,44 @@ namespace Managers
             selectedOption = BuildOptions.ExtinguishTile;
         }
 
-        private void PlaceTile()
+        /// <summary>
+        /// Places a selected tile on the targeted tile if it's empty.
+        /// </summary>
+        /// <param name="tile">The targeted hex tile to place the tile on.</param>
+        public void PlaceTile(HexTile tile)
         {
-            if (targetedTile.state != HexTile.TileState.Empty)
+            if (tile == null)
                 return;
 
-            targetedTile.state = HexTile.TileState.Neutral;
-            targetedTile.data = selectedTile;
+            if (tile.state == TileState.Empty)
+            {
+                tile.state = TileState.Neutral;
+                tile.data = selectedTile;
 
-            if (targetedTile.data.IsBurnable)
-                GameManager.GetInstance().FireManager.BurnableTiles.Add(targetedTile);
+                if (tile.data.IsBurnable)
+                    GameManager.GetInstance().FireManager.BurnableTiles.Add(tile);
 
-            if (targetedTile.data == campsite)
-                GameManager.GetInstance().EconomyManager.Campsites.Add(targetedTile);
+                if (tile.data == campsite)
+                    GameManager.GetInstance().EconomyManager.Campsites.Add(tile);
 
-            targetedTile.UpdateGFX();
+                tile.UpdateGFX();
 
-            selectedOption = BuildOptions.None;
+                // Reset the selected option after placing the tile.
+                selectedOption = BuildOptions.None;
+            }
+            else
+            {
+                if (tile.data.IsBurnable)
+                    GameManager.GetInstance().FireManager.BurnableTiles.Add(tile);
+
+                if (tile.data == campsite)
+                    GameManager.GetInstance().EconomyManager.Campsites.Add(tile);
+            }
         }
 
         private void BulldozeTile()
         {
-            if (targetedTile.state != HexTile.TileState.Neutral && targetedTile.state != HexTile.TileState.Recovering)
+            if (targetedTile.state != TileState.Neutral && targetedTile.state != TileState.Recovering)
                 return;
 
             if (targetedTile.data == campsite)
@@ -139,7 +155,7 @@ namespace Managers
                 GameManager.GetInstance().FireManager.BurnableTiles.Remove(targetedTile);
 
             targetedTile.data = empty;
-            targetedTile.state = HexTile.TileState.Empty;
+            targetedTile.state = TileState.Empty;
 
             targetedTile.UpdateGFX();
 
@@ -148,7 +164,7 @@ namespace Managers
 
         private void ExtinguishTile()
         {
-            if (targetedTile.state != HexTile.TileState.Burning)
+            if (targetedTile.state != TileState.Burning)
                 return;
 
             targetedTile.Extinguish();
