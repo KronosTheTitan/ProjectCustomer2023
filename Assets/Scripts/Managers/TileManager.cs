@@ -43,7 +43,7 @@ namespace Managers
             {
                 if (tile.state == TileState.Empty)
                     continue;
-                if (tile.state == TileState.Recovering)
+                if (tile.state == TileState.Burning)
                     continue;
 
                 int roll = Random.Range(0, 100);

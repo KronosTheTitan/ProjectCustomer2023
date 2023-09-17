@@ -13,7 +13,7 @@ namespace Map
     {
         Neutral,
         Burning,
-        Recovering,
+        Burned,
         Empty
     }
 
@@ -75,22 +75,14 @@ namespace Map
                     {
                         if (data.canRecover)
                         {
-                            state = TileState.Recovering;
+                            state = TileState.Burned;
                         }
                         else
                         {
                             state = TileState.Empty;
-                            data = GameManager.GetInstance().BuildingManager.Empty;
+                            data = null;
                         }
                         UpdateGFX();
-                    }
-                    break;
-                case TileState.Recovering:
-                    if (stateLastChangedDuringTurn + data.recoveryTime < GameManager.GetInstance().TurnNumber)
-                    {
-                        state = TileState.Neutral;
-                        stateLastChangedDuringTurn = GameManager.GetInstance().TurnNumber;
-                        //UpdateGFX();
                     }
                     break;
             }
@@ -130,17 +122,16 @@ namespace Map
         /// </summary>
         public void UpdateGFX()
         {
-            ChangeAnimatedTileState();
 
-            //if (state == TileState.Burning)
-            //{
-            //    gfx = Instantiate(data.gfxBurning, transform.position, quaternion.identity, transform);
-            //}
+            if (state == TileState.Burning)
+            {
+                gfx = Instantiate(data.gfxBurning, transform.position, quaternion.identity, transform);
+            }
 
-            //if (state == TileState.Recovering)
-            //{
-            //    gfx = Instantiate(data.gfxRecovering, transform.position, quaternion.identity, transform);
-            //}
+            if (state == TileState.Burned)
+            {
+                gfx = Instantiate(data.gfxBurned, transform.position, quaternion.identity, transform);
+            }
             
             if (state == TileState.Neutral || state == TileState.Empty)
             {
@@ -150,18 +141,6 @@ namespace Map
 
             if (state != TileState.Empty)
                 foreach (Tile tile in adjacentTiles) tile.gameObject.SetActive(true);
-        }
-
-        /// <summary>
-        /// Call this function when the tile state changes
-        /// </summary>
-        public void ChangeAnimatedTileState()
-        {
-            TreeController[] treeControllers = GetComponentsInChildren<TreeController>();
-            for (int i = 0; i < treeControllers.Length; i++)
-            {
-                treeControllers[i].OnTileStateChanged(state);
-            }
         }
 
         private void OnDrawGizmos()

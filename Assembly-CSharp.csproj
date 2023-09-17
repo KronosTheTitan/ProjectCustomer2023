@@ -46,17 +46,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Map\TileType.cs" />
-     <Compile Include="Assets\Scripts\Map\TreeController.cs" />
      <Compile Include="Assets\Scripts\Managers\BuildTools\ExtinguisherTool.cs" />
      <Compile Include="Assets\Scripts\UserInterface\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Managers\BuildTools\RandomTileTool.cs" />
-     <Compile Include="Assets\Scripts\RandomColor.cs" />
      <Compile Include="Assets\Scripts\Map\Tile.cs" />
      <Compile Include="Assets\Scripts\Managers\BuildTools\ReviveTileTool.cs" />
      <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\BuildingManager.cs" />
-     <Compile Include="Assets\Scripts\Map\RandomizedTile.cs" />
      <Compile Include="Assets\Scripts\Managers\EconomyManager.cs" />
      <Compile Include="Assets\Scripts\Map\TileGrid.cs" />
      <Compile Include="Assets\Scripts\ExampleClass.cs" />

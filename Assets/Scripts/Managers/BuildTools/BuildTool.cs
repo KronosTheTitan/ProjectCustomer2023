@@ -1,4 +1,5 @@
 ﻿using System;
+using Map;
 
 namespace Managers.BuildTools
 {
@@ -6,7 +7,7 @@ namespace Managers.BuildTools
     public abstract class BuildTool
     {
         public abstract bool CanSelect();
-        public abstract bool UseTool();
+        public abstract bool UseTool(Tile target);
         public abstract void OnDeselect();
     }
 }

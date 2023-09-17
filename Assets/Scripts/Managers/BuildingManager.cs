@@ -17,18 +17,15 @@ namespace Managers
         /// </summary>
         public Tile targetedTile;
 
-        [SerializeField] private TileType empty;
-        [SerializeField] private TileType campsite;
-
-        /// <summary>
-        /// Gets the TileType for empty tiles.
-        /// </summary>
-        public TileType Empty => empty;
-
         [SerializeField] private TileType[] potentialTiles;
         [SerializeField] private TileType selectedTile;
 
-        [SerializeField] private BuildTool _selectedTool;
+        [SerializeField] private BulldozerTool bulldozer;
+        [SerializeField] private ExtinguisherTool extinguisherTool;
+        [SerializeField] private RandomTileTool randomTileTool;
+        [SerializeField] private ReviveTileTool reviveTileTool;
+        
+        private BuildTool _selectedTool;
 
         private void Update()
         {
@@ -41,7 +38,7 @@ namespace Managers
             if (targetedTile == null)
                 return;
 
-            if (_selectedTool.UseTool())
+            if (_selectedTool.UseTool(targetedTile))
                 DeselectTool();
         }
 
@@ -101,45 +98,17 @@ namespace Managers
             if (tile == null)
                 return;
 
-            if (tile.state == TileState.Empty)
-            {
-                tile.state = TileState.Neutral;
-                tile.data = selectedTile;
-
-                if (tile.data == campsite)
-                    GameManager.GetInstance().EconomyManager.Campsites.Add(tile);
-
-                tile.UpdateGFX();
-
-                // Reset the selected option after placing the tile.
-            }
-            else
-            {
-                if (tile.data == campsite)
-                    GameManager.GetInstance().EconomyManager.Campsites.Add(tile);
-            }
-        }
-
-        private void BulldozeTile()
-        {
-            if (targetedTile.state != TileState.Neutral && targetedTile.state != TileState.Recovering)
+            if (tile.state != TileState.Empty)
                 return;
+            
+            tile.state = TileState.Neutral;
+            tile.data = selectedTile;
 
-            if (targetedTile.data == campsite)
-                GameManager.GetInstance().EconomyManager.Campsites.Remove(targetedTile);
-
-            targetedTile.data = empty;
-            targetedTile.state = TileState.Empty;
-
-            targetedTile.UpdateGFX();
+            tile.UpdateGFX();
         }
 
         private void ExtinguishTile()
         {
-            if (targetedTile.state != TileState.Burning)
-                return;
-
-            targetedTile.Extinguish();
         }
     }
 }

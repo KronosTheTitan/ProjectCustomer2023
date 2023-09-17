@@ -10,38 +10,31 @@ namespace Managers
     public class EconomyManager : MonoBehaviour
     {
         [SerializeField] private int money = 0;
+        [SerializeField] private int naturePoints = 0;
 
         /// <summary>
         /// Gets the current amount of money.
         /// </summary>
         public int Money => money;
 
-        [SerializeField] private List<Tile> campsites;
-
-        /// <summary>
-        /// Gets the list of campsites.
-        /// </summary>
-        public List<Tile> Campsites => campsites;
+        public int NaturePoints => naturePoints;
 
         /// <summary>
         /// Receives income from campsites and deducts penalties for burning tiles.
         /// </summary>
         public void ReceiveIncome()
         {
-            if (campsites.Count == 0)
-                return;
+            int deltaMoney = 0;
+            TileManager tileManager = GameManager.GetInstance().TileManager;
 
-            foreach (Tile hexTile in campsites)
+            foreach (Tile tile in tileManager.Tiles)
             {
-                if (hexTile.state != TileState.Neutral)
-                    continue;
-                money += GameManager.GetInstance().Difficulty.CampsiteIncome;
+                deltaMoney += tile.data.revenue;
             }
 
-            foreach (Tile tile in GameManager.GetInstance().TileManager.BurningTiles)
-            {
-                money -= GameManager.GetInstance().Difficulty.FirePenalty;
-            }
+            deltaMoney -= GameManager.GetInstance().Difficulty.FirePenalty * tileManager.BurningTiles.Length;
+
+            money += deltaMoney;
         }
 
         /// <summary>
