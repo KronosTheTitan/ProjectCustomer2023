@@ -11,24 +11,24 @@ namespace Map
     /// <summary>
     /// Represents a hexagonal grid.
     /// </summary>
-    public class HexGrid : MonoBehaviour
+    public class TileGrid : MonoBehaviour
     {
-        public List<HexTile> randomTilesToGenerate = new List<HexTile>();
+        public List<Tile> randomTilesToGenerate = new List<Tile>();
 
         [SerializeField] private int width;
         [SerializeField] private int height;
 
-        [SerializeField] private List<HexTile> _generatedTiles = new List<HexTile>();
-        private HexTile[,] _grid;
+        [SerializeField] private List<Tile> _generatedTiles = new List<Tile>();
+        private Tile[,] _grid;
 
-        [SerializeField] private HexTile baseTile;
+        [SerializeField] private Tile baseTile;
 
         [SerializeField] private float offsetXAxis = 0.866025f; // Horizontal offset between hex tiles.
         [SerializeField] private float offsetYAxis = 1.5f;     // Vertical offset between hex tiles.
 
         private void Start ()
         {
-            foreach (HexTile tile in _generatedTiles)
+            foreach (Tile tile in _generatedTiles)
             {
                 GameManager.GetInstance().BuildingManager.PlaceTile(tile);
             }
@@ -54,10 +54,10 @@ namespace Map
         /// Generates a hexagonal grid of tiles and populates it using the provided tile factory.
         /// </summary>
         /// <param name="tileFactory">A delegate that creates a HexTile instance.</param>
-        private void GenerateGrid(Func<HexTile> tileFactory)
+        private void GenerateGrid(Func<Tile> tileFactory)
         {
             ClearGrid();
-            _grid = new HexTile[width, height];
+            _grid = new Tile[width, height];
 
             for (int x = 0; x < width; x++)
             {
@@ -76,7 +76,7 @@ namespace Map
                     }
 
                     // Create a new HexTile using the provided factory method.
-                    HexTile tile = Instantiate(tileFactory(), position, Quaternion.identity, transform);
+                    Tile tile = Instantiate(tileFactory(), position, Quaternion.identity, transform);
                     _generatedTiles.Add(tile);
 
                     _grid[x, y] = tile;
@@ -97,7 +97,7 @@ namespace Map
         /// <param name="x">The x-coordinate of the tile in the grid.</param>
         /// <param name="y">The y-coordinate of the tile in the grid.</param>
         /// <param name="isEvenColumn">Indicates if the current column is even.</param>
-        private void TryConnectTiles(HexTile tile, int x, int y, bool isEvenColumn)
+        private void TryConnectTiles(Tile tile, int x, int y, bool isEvenColumn)
         {
             try
             {
@@ -132,7 +132,7 @@ namespace Map
         {
             while (_generatedTiles.Count > 0)
             {
-                HexTile tile = _generatedTiles[0];
+                Tile tile = _generatedTiles[0];
                 _generatedTiles.Remove(_generatedTiles[0]);
 
                 DestroyImmediate(tile.gameObject);
@@ -148,7 +148,7 @@ namespace Map
         /// </summary>
         /// <param name="a">The first hexagonal tile.</param>
         /// <param name="b">The second hexagonal tile.</param>
-        private void ConnectTiles(HexTile a, HexTile b)
+        private void ConnectTiles(Tile a, Tile b)
         {
             a.adjacentTiles.Add(b);
             b.adjacentTiles.Add(a);

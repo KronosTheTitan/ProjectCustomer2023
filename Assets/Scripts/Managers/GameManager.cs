@@ -32,7 +32,7 @@ namespace Managers
         #endregion
 
         [SerializeField] private EconomyManager economyManager;
-        [SerializeField] private FireManager fireManager;
+        [SerializeField] private TileManager tileManager;
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private UIManager uiManager;
         [SerializeField] private DifficultySetting difficulty;
@@ -46,7 +46,7 @@ namespace Managers
         /// <summary>
         /// Gets the FireManager component.
         /// </summary>
-        public FireManager FireManager => fireManager;
+        public TileManager TileManager => tileManager;
 
         /// <summary>
         /// Gets the BuildingManager component.
@@ -87,9 +87,9 @@ namespace Managers
             OnNextTurn?.Invoke(); // Trigger the next turn event.
 
             // Attempt to spread fire, and start random fire if spreading fails.
-            if (!fireManager.SpreadFire())
-                fireManager.StartRandomFire();
-
+            if(!tileManager.SpreadFire())
+                tileManager.StartRandomFire();
+            
             turnNumber++; // Increment the turn count.
         }
     }

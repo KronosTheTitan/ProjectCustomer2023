@@ -20,12 +20,12 @@ namespace Map
     /// <summary>
     /// Represents a hexagonal tile on the game map.
     /// </summary>
-    public class HexTile : MonoBehaviour
+    public class Tile : MonoBehaviour
     {
         /// <summary>
         /// List of adjacent hexagonal tiles.
         /// </summary>
-        public List<HexTile> adjacentTiles;
+        public List<Tile> adjacentTiles;
 
         /// <summary>
         /// The data associated with this tile.
@@ -53,7 +53,7 @@ namespace Map
 
             gameObject.SetActive(false);
 
-            foreach (HexTile tile in adjacentTiles)
+            foreach (Tile tile in adjacentTiles)
             {
                 if (tile.state != TileState.Empty)
                     gameObject.SetActive(true);
@@ -73,7 +73,7 @@ namespace Map
                 case TileState.Burning:
                     if (stateLastChangedDuringTurn + data.burnTime < GameManager.GetInstance().TurnNumber)
                     {
-                        if (data.CanRecover)
+                        if (data.canRecover)
                         {
                             state = TileState.Recovering;
                         }
@@ -101,11 +101,10 @@ namespace Map
         /// </summary>
         public void Ignite()
         {
-            if (!data.IsBurnable)
+            if (!data.isBurnable)
                 return;
             if (state == TileState.Burning)
                 return;
-            GameManager.GetInstance().FireManager.BurningTiles.Add(this);
             stateLastChangedDuringTurn = GameManager.GetInstance().TurnNumber;
             state = TileState.Burning;
 
@@ -119,8 +118,6 @@ namespace Map
         {
             if (state != TileState.Burning)
                 return;
-
-            GameManager.GetInstance().FireManager.BurningTiles.Remove(this);
             stateLastChangedDuringTurn = GameManager.GetInstance().TurnNumber;
 
             state = TileState.Neutral;
@@ -152,7 +149,7 @@ namespace Map
             }
 
             if (state != TileState.Empty)
-                foreach (HexTile tile in adjacentTiles) tile.gameObject.SetActive(true);
+                foreach (Tile tile in adjacentTiles) tile.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -169,7 +166,7 @@ namespace Map
 
         private void OnDrawGizmos()
         {
-            foreach (HexTile hexTile in adjacentTiles)
+            foreach (Tile hexTile in adjacentTiles)
             {
                 if (hexTile.adjacentTiles.Contains(this))
                     Gizmos.color = Color.green;

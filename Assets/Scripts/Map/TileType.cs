@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Map
 {
@@ -11,22 +12,27 @@ namespace Map
         /// <summary>
         /// Indicates whether this tile can be burned.
         /// </summary>
-        public bool IsBurnable;
+        [FormerlySerializedAs("IsBurnable")] public bool isBurnable;
 
         /// <summary>
         /// Indicates whether this tile is a water source.
         /// </summary>
-        public bool IsWaterSource;
+        [FormerlySerializedAs("IsWaterSource")] public bool isWaterSource;
 
         /// <summary>
         /// Indicates whether this tile can recover from being burned.
         /// </summary>
-        public bool CanRecover;
+        [FormerlySerializedAs("CanRecover")] public bool canRecover;
 
         /// <summary>
         /// The time it takes for this tile to burn.
         /// </summary>
         public int burnTime;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int revenue;
 
         /// <summary>
         /// The time it takes for this tile to recover from being burned.

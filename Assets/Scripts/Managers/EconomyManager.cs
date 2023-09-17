@@ -16,12 +16,12 @@ namespace Managers
         /// </summary>
         public int Money => money;
 
-        [SerializeField] private List<HexTile> campsites;
+        [SerializeField] private List<Tile> campsites;
 
         /// <summary>
         /// Gets the list of campsites.
         /// </summary>
-        public List<HexTile> Campsites => campsites;
+        public List<Tile> Campsites => campsites;
 
         /// <summary>
         /// Receives income from campsites and deducts penalties for burning tiles.
@@ -31,14 +31,14 @@ namespace Managers
             if (campsites.Count == 0)
                 return;
 
-            foreach (HexTile hexTile in campsites)
+            foreach (Tile hexTile in campsites)
             {
                 if (hexTile.state != TileState.Neutral)
                     continue;
                 money += GameManager.GetInstance().Difficulty.CampsiteIncome;
             }
 
-            foreach (HexTile tile in GameManager.GetInstance().FireManager.BurningTiles)
+            foreach (Tile tile in GameManager.GetInstance().TileManager.BurningTiles)
             {
                 money -= GameManager.GetInstance().Difficulty.FirePenalty;
             }

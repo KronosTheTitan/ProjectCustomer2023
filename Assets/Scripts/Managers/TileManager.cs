@@ -4,52 +4,42 @@ using UnityEngine;
 
 namespace Managers
 {
-    /// <summary>
-    /// Manages the spread of fire in the game.
-    /// </summary>
-    public class FireManager : MonoBehaviour
+    public class TileManager : MonoBehaviour
     {
-        [SerializeField] private List<HexTile> burningTiles = new List<HexTile>();
-        [SerializeField] private List<HexTile> burnableTiles = new List<HexTile>();
-
-        /// <summary>
-        /// Gets a list of tiles that are currently burning.
-        /// </summary>
-        public List<HexTile> BurningTiles => burningTiles;
-
-        /// <summary>
-        /// Gets a list of tiles that are susceptible to burning.
-        /// </summary>
-        public List<HexTile> BurnableTiles => burnableTiles;
-
+        [SerializeField] private List<Tile> tiles;
+        public Tile[] Tiles => tiles.ToArray();
+        
+        [SerializeField] private List<Tile> burningTiles;
+        public Tile[] BurningTiles => burningTiles.ToArray();
+        
         /// <summary>
         /// Attempts to spread the fire to neighboring tiles.
         /// </summary>
         /// <returns>True if the fire spreads to at least one tile, false otherwise.</returns>
         public bool SpreadFire()
         {
-            List<HexTile> potentialFireSpreads = new List<HexTile>();
+            List<Tile> potentialFireSpreads = new List<Tile>();
             bool returnValue = false;
 
-            List<HexTile> borderingTiles = new List<HexTile>();
+            List<Tile> borderingTiles = new List<Tile>();
 
             // Collect all tiles adjacent to burning tiles.
-            foreach (HexTile tile in burningTiles)
+            foreach (Tile tile in burningTiles)
             {
                 borderingTiles.AddRange(tile.adjacentTiles);
             }
 
             // Identify tiles that are burnable.
-            foreach (HexTile tile in borderingTiles)
+            foreach (Tile tile in borderingTiles)
             {
-                if (tile.data.IsBurnable != true)
+                if (tile.data.isBurnable != true)
                     continue;
 
                 potentialFireSpreads.Add(tile);
             }
 
             // Attempt to ignite tiles based on fire spread chances.
-            foreach (HexTile tile in potentialFireSpreads)
+            foreach (Tile tile in potentialFireSpreads)
             {
                 if (tile.state == TileState.Empty)
                     continue;
@@ -75,14 +65,32 @@ namespace Managers
             if (GameManager.GetInstance().TurnNumber < GameManager.GetInstance().Difficulty.GracePeriod)
                 return;
 
-            foreach (HexTile tile in burnableTiles)
+            foreach (Tile tile in tiles)
             {
+                if(!tile.data.isBurnable)
+                    continue;
+                
                 int roll = Random.Range(0, 100);
                 if (roll >= GameManager.GetInstance().Difficulty.RandomFireChance)
                     continue;
 
                 tile.Ignite();
             }
+        }
+
+        public int GetCampsiteNumber()
+        {
+            int output = 0;
+            foreach (Tile tile in tiles)
+            {
+                if(tile.state != TileState.Neutral)
+                    continue;
+                
+                if (tile.data.revenue != 0)
+                    output++;
+            }
+
+            return output;
         }
     }
 }

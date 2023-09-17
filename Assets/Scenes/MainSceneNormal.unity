@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   economyManager: {fileID: 1945018134}
-  fireManager: {fileID: 1473779575}
+  fireManager: {fileID: 0}
   buildingManager: {fileID: 565383340}
   uiManager: {fileID: 949471251}
   difficulty: {fileID: 11400000, guid: ef99c62b647c9564390f4554b293086c, type: 2}
@@ -17406,7 +17406,7 @@ GameObject:
   - component: {fileID: 1473779574}
   - component: {fileID: 1473779575}
   m_Layer: 0
-  m_Name: FireManager
+  m_Name: TileManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17436,13 +17436,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1473779573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b80e09ec6d39ef145835c788c53ace80, type: 3}
+  m_Script: {fileID: 11500000, guid: b62368c2d663873428e4f311e2094a47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burningTiles: []
-  burnableTiles:
-  - {fileID: 661540921}
-  - {fileID: 1816212719}
+  tiles: []
 --- !u!1 &1482483871
 GameObject:
   m_ObjectHideFlags: 0
@@ -26144,6 +26141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfb8f466a9e42c41808387929f0c625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomTilesToGenerate: []
   width: 11
   height: 9
   _generatedTiles:

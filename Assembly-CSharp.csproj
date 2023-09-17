@@ -47,18 +47,23 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Map\TileType.cs" />
      <Compile Include="Assets\Scripts\Map\TreeController.cs" />
+     <Compile Include="Assets\Scripts\Managers\BuildTools\ExtinguisherTool.cs" />
      <Compile Include="Assets\Scripts\UserInterface\MainMenu.cs" />
-     <Compile Include="Assets\Scripts\Map\HexGrid.cs" />
+     <Compile Include="Assets\Scripts\Managers\BuildTools\RandomTileTool.cs" />
      <Compile Include="Assets\Scripts\RandomColor.cs" />
-     <Compile Include="Assets\Scripts\Managers\FireManager.cs" />
+     <Compile Include="Assets\Scripts\Map\Tile.cs" />
+     <Compile Include="Assets\Scripts\Managers\BuildTools\ReviveTileTool.cs" />
      <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\BuildingManager.cs" />
      <Compile Include="Assets\Scripts\Map\RandomizedTile.cs" />
      <Compile Include="Assets\Scripts\Managers\EconomyManager.cs" />
+     <Compile Include="Assets\Scripts\Map\TileGrid.cs" />
      <Compile Include="Assets\Scripts\ExampleClass.cs" />
+     <Compile Include="Assets\Scripts\Managers\BuildTools\BuildTool.cs" />
+     <Compile Include="Assets\Scripts\Managers\BuildTools\BulldozerTool.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\Map\HexTile.cs" />
+     <Compile Include="Assets\Scripts\Managers\TileManager.cs" />
      <Compile Include="Assets\Scripts\DifficultySetting.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Prefabs\Animations" />
@@ -71,6 +76,7 @@
      <Folder Include="Assets\TileTypes" />
      <Folder Include="Assets\Prefab" />
      <Folder Include="Assets\Scripts\UserInterface" />
+     <Folder Include="Assets\Scripts\Managers\BuildTools" />
      <Folder Include="Assets\TileTypes\Grass" />
      <Folder Include="Assets\TileTypes\Tree" />
      <Folder Include="Assets\Scripts" />

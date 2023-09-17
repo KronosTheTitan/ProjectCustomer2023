@@ -7,7 +7,7 @@ namespace Editor.Map
     /// <summary>
     /// Custom editor for the HexGrid component, providing additional functionality in the Unity Inspector.
     /// </summary>
-    [CustomEditor(typeof(HexGrid))]
+    [CustomEditor(typeof(TileGrid))]
     public class ObjectBuilderEditor : UnityEditor.Editor
     {
         /// <summary>
@@ -19,27 +19,27 @@ namespace Editor.Map
             DrawDefaultInspector();
 
             // Cast the target to a HexGrid instance.
-            HexGrid hexGrid = (HexGrid)target;
+            TileGrid tileGrid = (TileGrid)target;
 
             // Button for clearing the grid.
             if (GUILayout.Button("Clear!"))
             {
-                hexGrid.ClearGrid();
+                tileGrid.ClearGrid();
             }
 
             // Button for generating tiles.
             if (GUILayout.Button("Generate!"))
             {
-                hexGrid.GenerateTiles();
+                tileGrid.GenerateTiles();
             }
 
             // Check if the randomTilesToGenerate list is populated.
-            if (hexGrid.randomTilesToGenerate != null && hexGrid.randomTilesToGenerate.Count > 0 && hexGrid.randomTilesToGenerate[0] != null)
+            if (tileGrid.randomTilesToGenerate != null && tileGrid.randomTilesToGenerate.Count > 0 && tileGrid.randomTilesToGenerate[0] != null)
             {
                 // Button for generating random tiles only if the list is populated.
                 if (GUILayout.Button("Generate random full grid!"))
                 {
-                    hexGrid.GenerateRandomGrid();
+                    tileGrid.GenerateRandomGrid();
                 }
             }
             else
