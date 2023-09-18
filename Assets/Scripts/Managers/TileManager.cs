@@ -7,10 +7,25 @@ namespace Managers
     public class TileManager : MonoBehaviour
     {
         [SerializeField] private List<Tile> tiles;
-        public Tile[] Tiles => tiles.ToArray();
+        public List<Tile> Tiles => tiles;
         
         [SerializeField] private List<Tile> burningTiles;
-        public Tile[] BurningTiles => burningTiles.ToArray();
+        public List<Tile> BurningTiles => burningTiles;
+
+        public delegate void TileManagerDelegate();
+
+        public event TileManagerDelegate OnPlacedTile;
+        public event TileManagerDelegate OnRemovedTile;
+
+        public void InvokeOnPlacedTile()
+        {
+            OnPlacedTile?.Invoke();
+        }
+
+        public void InvokeOnRemovedTile()
+        {
+            OnRemovedTile?.Invoke();
+        }
         
         /// <summary>
         /// Attempts to spread the fire to neighboring tiles.
@@ -41,13 +56,11 @@ namespace Managers
             // Attempt to ignite tiles based on fire spread chances.
             foreach (Tile tile in potentialFireSpreads)
             {
-                if (tile.state == TileState.Empty)
-                    continue;
-                if (tile.state == TileState.Burning)
+                if(tile.state != TileState.Neutral)
                     continue;
 
                 int roll = Random.Range(0, 100);
-                if (roll >= GameManager.GetInstance().Difficulty.FireSpreadChances[tile.data])
+                if (roll >= tile.data.fireSpreadChance)
                     continue;
 
                 tile.Ignite();
@@ -62,7 +75,7 @@ namespace Managers
         /// </summary>
         public void StartRandomFire()
         {
-            if (GameManager.GetInstance().TurnNumber < GameManager.GetInstance().Difficulty.GracePeriod)
+            if (GameManager.GetInstance().TurnNumber < GameManager.GetInstance().GracePeriod)
                 return;
 
             foreach (Tile tile in tiles)
@@ -71,7 +84,7 @@ namespace Managers
                     continue;
                 
                 int roll = Random.Range(0, 100);
-                if (roll >= GameManager.GetInstance().Difficulty.RandomFireChance)
+                if (roll >= GameManager.GetInstance().RandomFireChance + GetCampsiteNumber())
                     continue;
 
                 tile.Ignite();
@@ -83,7 +96,7 @@ namespace Managers
             int output = 0;
             foreach (Tile tile in tiles)
             {
-                if(tile.state != TileState.Neutral)
+                if(tile.state == TileState.Empty)
                     continue;
                 
                 if (tile.data.revenue != 0)

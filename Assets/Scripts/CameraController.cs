@@ -1,15 +1,17 @@
 using Managers;
+using Map;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Camera targetCamera;
     
-    [SerializeField] private float movementSpeedNormal;
-    [SerializeField] private float movementSpeedFast;
-    [SerializeField] private float movementTime;
-    [SerializeField] private float rotationAmount;
-    [SerializeField] private Vector3 zoomAmount;
+    [SerializeField] private float movementSpeedNormal = 0.03f;
+    [SerializeField] private float movementSpeedFast = 0.06f;
+    [SerializeField] private float movementTime = 8.07f;
+    [SerializeField] private float rotationAmount = 0.18f;
+    [SerializeField] private Vector3 zoomAmount = new Vector3(0, 0.15f, -0.15f);
     
     [SerializeField] private Vector3 newPosition;
     [SerializeField] private Quaternion newRotation;
@@ -19,14 +21,61 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private Vector3 minimumPos;
     [SerializeField] private Vector3 maximumPos;
-    [SerializeField] private float minimumZoom;
-    [SerializeField] private float maximumZoom;
+    [SerializeField] private float minimumZoom = 1;
+    [SerializeField] private float maximumZoom = 10;
 
     private void Start()
     {
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = targetCamera.transform.localPosition;
+
+        // Subscribe to tile placement and removal events
+        TileManager tileManager = GameManager.GetInstance().TileManager;
+        tileManager.OnPlacedTile += OnTilePlaced;
+        tileManager.OnRemovedTile += OnTileRemoved;
+
+        // Initialize camera bounds based on the current state of the grid
+        SetCameraBounds(tileManager.Tiles);
+        CenterCamera();
+    }
+
+    private void SetCameraBounds(List<Tile> tiles)
+    {
+        // Calculate the minimum and maximum positions based on active tiles
+        if (tiles.Count > 0)
+        {
+            Vector3 minTilePos = tiles[0].transform.position;
+            Vector3 maxTilePos = tiles[0].transform.position;
+
+            foreach (Tile tile in tiles)
+            {
+                if (!tile.gameObject.activeSelf)
+                    continue;
+
+                minTilePos = Vector3.Min(minTilePos, tile.transform.position);
+                maxTilePos = Vector3.Max(maxTilePos, tile.transform.position);
+            }
+
+            // Set camera positions based on active tiles
+            minimumPos = minTilePos;
+            maximumPos = maxTilePos;
+        }
+    }
+
+    private void CenterCamera()
+    {
+        newPosition = (minimumPos + maximumPos) / 2;
+    }
+
+    private void OnTilePlaced()
+    {
+        SetCameraBounds(GameManager.GetInstance().TileManager.Tiles);
+    }
+
+    private void OnTileRemoved()
+    {
+        SetCameraBounds(GameManager.GetInstance().TileManager.Tiles);
     }
 
     private void LateUpdate()
@@ -126,6 +175,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetKey(KeyCode.Tab))
         {
             newRotation = Quaternion.identity;
+            CenterCamera();
         }
 
         newPosition.x = Mathf.Clamp(newPosition.x, minimumPos.x, maximumPos.x);

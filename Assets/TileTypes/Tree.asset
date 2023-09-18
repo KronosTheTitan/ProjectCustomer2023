@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b12ffc1a8b35664199bce5336f88e8f, type: 3}
   m_Name: Tree
   m_EditorClassIdentifier: 
-  IsBurnable: 1
-  IsWaterSource: 0
-  CanRecover: 1
+  isBurnable: 1
+  isWaterSource: 0
+  canRecover: 1
   burnTime: 2
-  recoveryTime: 1
+  revenue: 0
+  natureYield: 3
   gfxNeutral: {fileID: 3286271890560108552, guid: 7f21946291ef2f54c84a7436107215a7, type: 3}
   gfxBurning: {fileID: 3286271890560108552, guid: f119bdb256f419b4f9928b9a2cdd55e9, type: 3}
-  gfxRecovering: {fileID: 3286271890560108552, guid: 6346504313d11764aa9073a13488be75, type: 3}
+  gfxBurned: {fileID: 3286271890560108552, guid: 6346504313d11764aa9073a13488be75, type: 3}
+  isNaturePointSource: 1
+  fireSpreadChance: 15

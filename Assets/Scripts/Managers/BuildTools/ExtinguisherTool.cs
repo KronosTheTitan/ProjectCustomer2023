@@ -1,5 +1,6 @@
 ﻿using System;
 using Map;
+using UnityEngine;
 
 namespace Managers.BuildTools
 {
@@ -8,7 +9,7 @@ namespace Managers.BuildTools
     {
         public override bool CanSelect()
         {
-            if(GameManager.GetInstance().Difficulty.ExtinguishCost > GameManager.GetInstance().EconomyManager.Money) 
+            if(Cost > GameManager.GetInstance().EconomyManager.Money) 
                 return false;
 
             return true;
@@ -27,6 +28,20 @@ namespace Managers.BuildTools
         public override void OnDeselect()
         {
             
+        }
+
+        public override void Charge(Tile tile)
+        {
+            int localCost = Cost;
+            foreach (Tile neighbor in tile.adjacentTiles)
+            {
+                if (neighbor.data.isWaterSource)
+                {
+                    localCost /= 2;
+                    break;
+                }
+            }
+            GameManager.GetInstance().EconomyManager.ModifyMoney(-localCost);
         }
     }
 }

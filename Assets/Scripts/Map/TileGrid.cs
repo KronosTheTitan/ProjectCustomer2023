@@ -1,8 +1,6 @@
 using Managers;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -30,7 +28,7 @@ namespace Map
         {
             foreach (Tile tile in _generatedTiles)
             {
-                GameManager.GetInstance().BuildingManager.PlaceTile(tile);
+                GameManager.GetInstance().TileManager.Tiles.Add(tile);
             }
         }
 

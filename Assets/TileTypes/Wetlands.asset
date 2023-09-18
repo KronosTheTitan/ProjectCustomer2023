@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b12ffc1a8b35664199bce5336f88e8f, type: 3}
   m_Name: Wetlands
   m_EditorClassIdentifier: 
-  IsBurnable: 0
-  IsWaterSource: 1
-  CanRecover: 1
+  isBurnable: 0
+  isWaterSource: 0
+  canRecover: 0
   burnTime: 0
-  recoveryTime: 0
+  revenue: 0
   gfxNeutral: {fileID: 3286271890560108552, guid: d317297df8682504195f47feead176b2, type: 3}
   gfxBurning: {fileID: 3286271890560108552, guid: f119bdb256f419b4f9928b9a2cdd55e9, type: 3}
-  gfxRecovering: {fileID: 3286271890560108552, guid: 6346504313d11764aa9073a13488be75, type: 3}
+  gfxBurned: {fileID: 3286271890560108552, guid: 6346504313d11764aa9073a13488be75, type: 3}

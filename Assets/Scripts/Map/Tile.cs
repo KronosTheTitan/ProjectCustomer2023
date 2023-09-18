@@ -68,23 +68,21 @@ namespace Map
         /// </summary>
         public void OnNextTurn()
         {
-            switch (state)
+            if(state != TileState.Burning)
+                return;
+            
+            if (stateLastChangedDuringTurn + data.burnTime < GameManager.GetInstance().TurnNumber)
             {
-                case TileState.Burning:
-                    if (stateLastChangedDuringTurn + data.burnTime < GameManager.GetInstance().TurnNumber)
-                    {
-                        if (data.canRecover)
-                        {
-                            state = TileState.Burned;
-                        }
-                        else
-                        {
-                            state = TileState.Empty;
-                            data = null;
-                        }
-                        UpdateGFX();
-                    }
-                    break;
+                if (data.canRecover)
+                {
+                    state = TileState.Burned;
+                }
+                else
+                {
+                    state = TileState.Empty;
+                    data = null;
+                }
+                UpdateGFX();
             }
         }
 
@@ -117,6 +115,17 @@ namespace Map
             UpdateGFX();
         }
 
+        public void Revive()
+        {
+            if (state != TileState.Burned)
+                return;
+            stateLastChangedDuringTurn = GameManager.GetInstance().TurnNumber;
+
+            state = TileState.Neutral;
+
+            UpdateGFX();
+        }
+
         /// <summary>
         /// Updates the visual representation of the tile.
         /// </summary>
@@ -125,11 +134,13 @@ namespace Map
 
             if (state == TileState.Burning)
             {
+                Destroy(gfx);
                 gfx = Instantiate(data.gfxBurning, transform.position, quaternion.identity, transform);
             }
 
             if (state == TileState.Burned)
             {
+                Destroy(gfx);
                 gfx = Instantiate(data.gfxBurned, transform.position, quaternion.identity, transform);
             }
             
@@ -156,14 +167,22 @@ namespace Map
             }
         }
 
-        private void OnMouseEnter()
+        public int GetNaturePoints()
         {
-            GameManager.GetInstance().BuildingManager.targetedTile = this;
-        }
+            int output = 0;
 
-        private void OnMouseExit()
-        {
-            GameManager.GetInstance().BuildingManager.targetedTile = null;
+            foreach (Tile tile in adjacentTiles)
+            {
+                if(tile.state != TileState.Neutral)
+                    continue;
+                
+                if(!tile.data.isNaturePointSource)
+                    continue;
+
+                output += data.natureYield;
+            }
+            
+            return output;
         }
     }
 }

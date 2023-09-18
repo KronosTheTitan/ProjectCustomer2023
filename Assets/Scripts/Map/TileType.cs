@@ -34,10 +34,7 @@ namespace Map
         /// </summary>
         public int revenue;
 
-        /// <summary>
-        /// The time it takes for this tile to recover from being burned.
-        /// </summary>
-        public int recoveryCost;
+        public int natureYield;
 
         /// <summary>
         /// The GameObject representing the neutral state of this tile type.
@@ -53,5 +50,9 @@ namespace Map
         /// The GameObject representing the recovering state of this tile type.
         /// </summary>
         public GameObject gfxBurned;
+
+        public bool isNaturePointSource;
+        [Range(0,100)]
+        public int fireSpreadChance;
     }
 }

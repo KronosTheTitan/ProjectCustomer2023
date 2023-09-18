@@ -35,8 +35,10 @@ namespace Managers
         [SerializeField] private TileManager tileManager;
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private UIManager uiManager;
-        [SerializeField] private DifficultySetting difficulty;
         [SerializeField] private int turnNumber = 1;
+        [SerializeField] private int gracePeriod;
+        [SerializeField] private int randomFireChance;
+        [SerializeField] private int firePenalty;
 
         /// <summary>
         /// Gets the EconomyManager component.
@@ -63,20 +65,20 @@ namespace Managers
         /// </summary>
         public int TurnNumber => turnNumber;
 
-        /// <summary>
-        /// Gets the game difficulty settings.
-        /// </summary>
-        public DifficultySetting Difficulty => difficulty;
+        public int GracePeriod => gracePeriod;
+        public int RandomFireChance => randomFireChance;
+        public int FirePenalty => firePenalty;
 
         /// <summary>
         /// Delegate for the next turn event.
         /// </summary>
-        public delegate void NextTurnDelegate();
+        public delegate void GameManagerDelegate();
 
         /// <summary>
         /// Event that is triggered when the game advances to the next turn.
         /// </summary>
-        public event NextTurnDelegate OnNextTurn;
+        public event GameManagerDelegate OnNextTurn;
+        public event GameManagerDelegate OnGameOver;
 
         /// <summary>
         /// Advances the game to the next turn, handling income, fire spread, and turn count.
@@ -91,6 +93,11 @@ namespace Managers
                 tileManager.StartRandomFire();
             
             turnNumber++; // Increment the turn count.
+        }
+
+        public void GameOver()
+        {
+            OnGameOver?.Invoke();
         }
     }
 }

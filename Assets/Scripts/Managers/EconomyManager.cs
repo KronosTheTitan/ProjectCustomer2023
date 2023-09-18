@@ -26,17 +26,30 @@ namespace Managers
         {
             int deltaMoney = 0;
             TileManager tileManager = GameManager.GetInstance().TileManager;
-
+            
             foreach (Tile tile in tileManager.Tiles)
             {
+                if(tile.state != TileState.Neutral)
+                    continue;
+                
                 deltaMoney += tile.data.revenue;
             }
 
-            deltaMoney -= GameManager.GetInstance().Difficulty.FirePenalty * tileManager.BurningTiles.Length;
+            deltaMoney -= GameManager.GetInstance().FirePenalty * tileManager.BurningTiles.Count;
 
             money += deltaMoney;
         }
 
+        public void ModifyMoney(int amount)
+        {
+            money += amount;
+        }
+        
+        public void ModifyNaturePoints(int amount)
+        {
+            naturePoints += amount;
+        }
+        
         /// <summary>
         /// Removes a specified amount of money.
         /// </summary>

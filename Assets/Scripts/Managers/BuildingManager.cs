@@ -17,10 +17,7 @@ namespace Managers
         /// </summary>
         public Tile targetedTile;
 
-        [SerializeField] private TileType[] potentialTiles;
-        [SerializeField] private TileType selectedTile;
-
-        [SerializeField] private BulldozerTool bulldozer;
+        [SerializeField] private BulldozerTool bulldozerTool;
         [SerializeField] private ExtinguisherTool extinguisherTool;
         [SerializeField] private RandomTileTool randomTileTool;
         [SerializeField] private ReviveTileTool reviveTileTool;
@@ -29,8 +26,16 @@ namespace Managers
 
         private void Update()
         {
+            GetTargetedTile();
+            
             if (_selectedTool == null)
                 return;
+
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                DeselectToolCancel();
+                return;
+            }
 
             if (!Input.GetMouseButton(0))
                 return;
@@ -39,11 +44,33 @@ namespace Managers
                 return;
 
             if (_selectedTool.UseTool(targetedTile))
-                DeselectTool();
+                DeselectToolSuccess();
         }
 
-        private void DeselectTool()
+        private void GetTargetedTile()
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            targetedTile = null;
+
+            if(!Physics.Raycast(ray, out hit))
+                return;
+
+            Tile target = hit.collider.gameObject.GetComponent<Tile>();
+            if(target == null)
+                return;
+            targetedTile = target;
+        }
+
+        private void DeselectToolCancel()
+        {
+            _selectedTool.OnDeselect();
+            _selectedTool = null;
+        }
+
+        private void DeselectToolSuccess()
+        {
+            _selectedTool.Charge(targetedTile);
             _selectedTool.OnDeselect();
             _selectedTool = null;
         }
@@ -53,14 +80,10 @@ namespace Managers
         /// </summary>
         public void SelectPlaceRandomTile()
         {
-            int money = GameManager.GetInstance().EconomyManager.Money;
-            int cost = GameManager.GetInstance().Difficulty.TileCost;
-            if (money < cost)
+            if(!randomTileTool.CanSelect())
                 return;
 
-            GameManager.GetInstance().EconomyManager.RemoveMoney(cost);
-
-            selectedTile = potentialTiles[Random.Range(0, potentialTiles.Length - 1)];
+            _selectedTool = randomTileTool;
         }
 
         /// <summary>
@@ -68,12 +91,10 @@ namespace Managers
         /// </summary>
         public void SelectBulldozer()
         {
-            int money = GameManager.GetInstance().EconomyManager.Money;
-            int cost = GameManager.GetInstance().Difficulty.BulldozeCost;
-            if (money < cost)
+            if(!bulldozerTool.CanSelect())
                 return;
 
-            GameManager.GetInstance().EconomyManager.RemoveMoney(cost);
+            _selectedTool = bulldozerTool;
         }
 
         /// <summary>
@@ -81,34 +102,10 @@ namespace Managers
         /// </summary>
         public void SelectExtinguisher()
         {
-            int money = GameManager.GetInstance().EconomyManager.Money;
-            int cost = GameManager.GetInstance().Difficulty.ExtinguishCost;
-            if (money < cost)
+            if(!extinguisherTool.CanSelect())
                 return;
 
-            GameManager.GetInstance().EconomyManager.RemoveMoney(cost);
-        }
-
-        /// <summary>
-        /// Places a selected tile on the targeted tile if it's empty.
-        /// </summary>
-        /// <param name="tile">The targeted hex tile to place the tile on.</param>
-        public void PlaceTile(Tile tile)
-        {
-            if (tile == null)
-                return;
-
-            if (tile.state != TileState.Empty)
-                return;
-            
-            tile.state = TileState.Neutral;
-            tile.data = selectedTile;
-
-            tile.UpdateGFX();
-        }
-
-        private void ExtinguishTile()
-        {
+            _selectedTool = extinguisherTool;
         }
     }
 }

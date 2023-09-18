@@ -7,9 +7,10 @@ namespace Managers.BuildTools
     [Serializable]
     public class BulldozerTool : BuildTool
     {
+        [SerializeField] private TileType emptyType;
         public override bool CanSelect()
         {
-            if(GameManager.GetInstance().Difficulty.BulldozeCost > GameManager.GetInstance().EconomyManager.Money) 
+            if(Cost > GameManager.GetInstance().EconomyManager.Money) 
                 return false;
 
             return true;
@@ -20,7 +21,7 @@ namespace Managers.BuildTools
             if (target.state != TileState.Neutral && target.state != TileState.Burned)
                 return false;
 
-            target.data = null;
+            target.data = emptyType;
             target.state = TileState.Empty;
 
             target.UpdateGFX();
@@ -31,6 +32,11 @@ namespace Managers.BuildTools
         public override void OnDeselect()
         {
             
+        }
+
+        public override void Charge(Tile tile)
+        {
+            GameManager.GetInstance().EconomyManager.ModifyMoney(-Cost);
         }
     }
 }
