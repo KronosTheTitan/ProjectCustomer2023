@@ -84,6 +84,7 @@ namespace Map
                 {
                     state = TileState.Empty;
                     data = null;
+                    GameManager.GetInstance().TileManager.InvokeOnRemovedTile();
                 }
                 UpdateGFX();
             }
