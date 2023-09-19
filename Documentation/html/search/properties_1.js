@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['campsiteincome_0',['CampsiteIncome',['../class_difficulty_setting.html#a43ed5e21142c85d4e3544aa1b38990d8',1,'DifficultySetting']]],
-  ['campsites_1',['Campsites',['../class_managers_1_1_economy_manager.html#a989130edf62a0da82af802a8ca3800d7',1,'Managers::EconomyManager']]]
+  ['economymanager_0',['EconomyManager',['../class_managers_1_1_game_manager.html#a5d4ec557df669e7a3fda64f2dbde082f',1,'Managers::GameManager']]]
 ];

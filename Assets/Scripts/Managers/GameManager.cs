@@ -32,11 +32,13 @@ namespace Managers
         #endregion
 
         [SerializeField] private EconomyManager economyManager;
-        [SerializeField] private FireManager fireManager;
+        [SerializeField] private TileManager tileManager;
         [SerializeField] private BuildingManager buildingManager;
         [SerializeField] private UIManager uiManager;
-        [SerializeField] private DifficultySetting difficulty;
         [SerializeField] private int turnNumber = 1;
+        [SerializeField] private int gracePeriod;
+        [SerializeField] private int randomFireChance;
+        [SerializeField] private int firePenalty;
 
         /// <summary>
         /// Gets the EconomyManager component.
@@ -46,7 +48,7 @@ namespace Managers
         /// <summary>
         /// Gets the FireManager component.
         /// </summary>
-        public FireManager FireManager => fireManager;
+        public TileManager TileManager => tileManager;
 
         /// <summary>
         /// Gets the BuildingManager component.
@@ -63,20 +65,20 @@ namespace Managers
         /// </summary>
         public int TurnNumber => turnNumber;
 
-        /// <summary>
-        /// Gets the game difficulty settings.
-        /// </summary>
-        public DifficultySetting Difficulty => difficulty;
+        public int GracePeriod => gracePeriod;
+        public int RandomFireChance => randomFireChance;
+        public int FirePenalty => firePenalty;
 
         /// <summary>
         /// Delegate for the next turn event.
         /// </summary>
-        public delegate void NextTurnDelegate();
+        public delegate void GameManagerDelegate();
 
         /// <summary>
         /// Event that is triggered when the game advances to the next turn.
         /// </summary>
-        public event NextTurnDelegate OnNextTurn;
+        public event GameManagerDelegate OnNextTurn;
+        public event GameManagerDelegate OnGameOver;
 
         /// <summary>
         /// Advances the game to the next turn, handling income, fire spread, and turn count.
@@ -87,10 +89,15 @@ namespace Managers
             OnNextTurn?.Invoke(); // Trigger the next turn event.
 
             // Attempt to spread fire, and start random fire if spreading fails.
-            if (!fireManager.SpreadFire())
-                fireManager.StartRandomFire();
-
+            if(!tileManager.SpreadFire())
+                tileManager.StartRandomFire();
+            
             turnNumber++; // Increment the turn count.
+        }
+
+        public void GameOver()
+        {
+            OnGameOver?.Invoke();
         }
     }
 }

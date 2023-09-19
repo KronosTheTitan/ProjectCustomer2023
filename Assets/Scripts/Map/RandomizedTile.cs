@@ -40,6 +40,11 @@ namespace Map
     public class RandomizedTile : MonoBehaviour
     {
         /// <summary>
+        /// Base tile.
+        /// </summary>
+        [SerializeField] private GameObject baseTile;
+
+        /// <summary>
         /// List of spawn points for objects.
         /// </summary>
         [SerializeField] private List<GameObject> objectSpawnPoints;
@@ -52,13 +57,11 @@ namespace Map
         // List to store the spawned objects on this tile.
         [SerializeField] private List<GameObject> spawnedObjects = new List<GameObject>();
 
-        private void Start ()
+        private List<GameObject> preserveList = new List<GameObject>();
+
+        private void Start()
         {
-            // Check if the first spawn point is active and generate objects accordingly.
-            if (objectSpawnPoints[0].activeInHierarchy)
-            {
-                GenerateObjects();
-            }
+            GenerateObjects();
         }
 
         /// <summary>
@@ -70,7 +73,7 @@ namespace Map
             ClearSpawnedObjects();
 
             // Check if there are valid spawn points and spawn info.
-            if (objectSpawnPoints == null || objectSpawnPoints.Count == 0 || 
+            if (objectSpawnPoints == null || objectSpawnPoints.Count == 0 ||
                 objectSpawnInfoList == null || objectSpawnInfoList.Count == 0)
                 return;
 
@@ -108,15 +111,33 @@ namespace Map
         /// </summary>
         public void ClearSpawnedObjects()
         {
+            preserveList.AddRange(objectSpawnPoints);
+            preserveList.Add(baseTile);
+
             foreach (GameObject spawnPoint in objectSpawnPoints)
             {
                 spawnPoint.SetActive(true);
             }
 
-            foreach (GameObject spawnedObject in spawnedObjects)
+            // Get all child GameObjects of the parent object
+            Transform parentTransform = transform;
+            List<GameObject> childrenToRemove = new List<GameObject>();
+
+            foreach (Transform child in parentTransform)
             {
-                DestroyImmediate(spawnedObject);
+                // Check if the child is not in the preserve list
+                if (!preserveList.Contains(child.gameObject))
+                {
+                    childrenToRemove.Add(child.gameObject);
+                }
             }
+
+            foreach (GameObject childToRemove in childrenToRemove)
+            {
+                DestroyImmediate(childToRemove);
+            }
+
+            preserveList.Clear();
             spawnedObjects.Clear();
         }
     }

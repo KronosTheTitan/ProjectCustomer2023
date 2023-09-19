@@ -10,40 +10,46 @@ namespace Managers
     public class EconomyManager : MonoBehaviour
     {
         [SerializeField] private int money = 0;
+        [SerializeField] private int naturePoints = 0;
 
         /// <summary>
         /// Gets the current amount of money.
         /// </summary>
         public int Money => money;
 
-        [SerializeField] private List<HexTile> campsites;
-
-        /// <summary>
-        /// Gets the list of campsites.
-        /// </summary>
-        public List<HexTile> Campsites => campsites;
+        public int NaturePoints => naturePoints;
 
         /// <summary>
         /// Receives income from campsites and deducts penalties for burning tiles.
         /// </summary>
         public void ReceiveIncome()
         {
-            if (campsites.Count == 0)
-                return;
-
-            foreach (HexTile hexTile in campsites)
+            int deltaMoney = 0;
+            TileManager tileManager = GameManager.GetInstance().TileManager;
+            
+            foreach (Tile tile in tileManager.Tiles)
             {
-                if (hexTile.state != TileState.Neutral)
+                if(tile.state != TileState.Neutral)
                     continue;
-                money += GameManager.GetInstance().Difficulty.CampsiteIncome;
+                
+                deltaMoney += tile.data.revenue;
             }
 
-            foreach (HexTile tile in GameManager.GetInstance().FireManager.BurningTiles)
-            {
-                money -= GameManager.GetInstance().Difficulty.FirePenalty;
-            }
+            deltaMoney -= GameManager.GetInstance().FirePenalty * tileManager.BurningTiles.Count;
+
+            money += deltaMoney;
         }
 
+        public void ModifyMoney(int amount)
+        {
+            money += amount;
+        }
+        
+        public void ModifyNaturePoints(int amount)
+        {
+            naturePoints += amount;
+        }
+        
         /// <summary>
         /// Removes a specified amount of money.
         /// </summary>

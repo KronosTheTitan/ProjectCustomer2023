@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['gamemanager_0',['GameManager',['../class_managers_1_1_game_manager.html',1,'Managers']]]
+  ['objectbuildereditor_0',['ObjectBuilderEditor',['../class_editor_1_1_map_1_1_object_builder_editor.html',1,'Editor::Map']]],
+  ['objectspawninfo_1',['ObjectSpawnInfo',['../class_map_1_1_object_spawn_info.html',1,'Map']]]
 ];

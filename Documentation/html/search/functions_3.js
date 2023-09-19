@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ignite_0',['Ignite',['../class_map_1_1_hex_tile.html#a12d98b12458eed55e1dd08743befd5bc',1,'Map::HexTile']]]
+  ['ignite_0',['Ignite',['../class_map_1_1_tile.html#aae6f3be957e832a10252d40344a9d6ac',1,'Map::Tile']]]
 ];

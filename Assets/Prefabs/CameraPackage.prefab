@@ -197,3 +197,6 @@ MonoBehaviour:
   maximumPos: {x: 15, y: 0, z: 14.72242}
   minimumZoom: 1
   maximumZoom: 10
+  cameraGizmoColor: {r: 0.97404873, g: 1, b: 0, a: 0.18431373}
+  xAdjust: 2
+  zAdjust: 1.73205
