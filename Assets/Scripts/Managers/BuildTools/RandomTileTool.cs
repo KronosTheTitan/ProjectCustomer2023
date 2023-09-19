@@ -39,8 +39,9 @@ namespace Managers.BuildTools
             target.data = selectedTile;
             
             GameManager.GetInstance().EconomyManager.ModifyNaturePoints(target.GetNaturePoints());
-            GameManager.GetInstance().TileManager.InvokeOnPlacedTile();
+            
             target.UpdateGFX();
+            GameManager.GetInstance().TileManager.InvokeOnPlacedTile();
 
             tilesPlaced++;
 

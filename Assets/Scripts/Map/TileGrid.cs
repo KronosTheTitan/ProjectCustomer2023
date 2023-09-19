@@ -21,8 +21,8 @@ namespace Map
 
         [SerializeField] private Tile baseTile;
 
-        [SerializeField] private float offsetXAxis = 0.866025f; // Horizontal offset between hex tiles.
-        [SerializeField] private float offsetYAxis = 1.5f;     // Vertical offset between hex tiles.
+        [SerializeField] private float offsetXAxis = 1.73205f; // Horizontal offset between hex tiles.
+        [SerializeField] private float offsetZAxis = 1.5f;     // Vertical offset between hex tiles.
 
         private void Awake ()
         {
@@ -66,11 +66,11 @@ namespace Map
                     // Calculate the position of the tile based on hexagonal grid coordinates.
                     if (x % 2f == 0f)
                     {
-                        position = new Vector3(x * offsetXAxis, 0, y * offsetYAxis);
+                        position = new Vector3(x * offsetXAxis, 0, y * offsetZAxis);
                     }
                     else
                     {
-                        position = new Vector3(x * offsetXAxis, 0, y * offsetYAxis + offsetYAxis / 2);
+                        position = new Vector3(x * offsetXAxis, 0, y * offsetZAxis + offsetZAxis / 2);
                     }
 
                     // Create a new HexTile using the provided factory method.

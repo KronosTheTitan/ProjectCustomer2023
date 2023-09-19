@@ -26,6 +26,9 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private Color cameraGizmoColor;
 
+    [SerializeField] private float xAdjust = 2.0f;
+    [SerializeField] private float zAdjust = 1.73205f;
+
     private void Start()
     {
         newPosition = transform.position;
@@ -64,8 +67,8 @@ public class CameraController : MonoBehaviour
         }
 
         // Set camera positions based on active tiles
-        minimumPos = minTilePos;
-        maximumPos = maxTilePos;
+        minimumPos = minTilePos - (new Vector3(xAdjust, 0, zAdjust) / 2);
+        maximumPos = maxTilePos + (new Vector3(xAdjust, 0, zAdjust) / 2);
     }
 
     private void CenterCamera()
