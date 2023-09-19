@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,43,129,69"/>
+<area shape="rect" id="Node000001" href="$class_editor_1_1_map_1_1_object_builder_editor.html" title="Custom editor for the HexGrid component, providing additional functionality in the Unity Inspector." alt="" coords="182,5,348,48"/>
+<area shape="poly" id="edge18_Node000000_Node000001" title=" " alt="" coords="143,42,181,36,182,42,144,47"/>
+<area shape="rect" id="Node000002" href="$class_map_1_1_randomized_tile_editor.html" title="Custom editor for the RandomizedTile class." alt="" coords="177,72,353,99"/>
+<area shape="poly" id="edge19_Node000000_Node000002" title=" " alt="" coords="144,65,177,70,176,75,143,70"/>
+</map>

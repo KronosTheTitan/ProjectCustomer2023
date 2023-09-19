@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['isburnable_0',['IsBurnable',['../class_map_1_1_tile_type.html#ad64b42e256ac32553f9b6642d1207f9a',1,'Map::TileType']]],
-  ['iswatersource_1',['IsWaterSource',['../class_map_1_1_tile_type.html#afd3bfda83b5f9bdbfbc15043e767944e',1,'Map::TileType']]]
+  ['maximumscale_0',['maximumScale',['../class_map_1_1_object_spawn_info.html#a6427893bccf8235155063735acbbe8ab',1,'Map::ObjectSpawnInfo']]],
+  ['minimumscale_1',['minimumScale',['../class_map_1_1_object_spawn_info.html#ad2d953cb34e25b3199fe4216b6c52216',1,'Map::ObjectSpawnInfo']]]
 ];

@@ -24,7 +24,7 @@ namespace Map
         [SerializeField] private float offsetXAxis = 0.866025f; // Horizontal offset between hex tiles.
         [SerializeField] private float offsetYAxis = 1.5f;     // Vertical offset between hex tiles.
 
-        private void Start ()
+        private void Awake ()
         {
             foreach (Tile tile in _generatedTiles)
             {

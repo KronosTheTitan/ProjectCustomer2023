@@ -47,10 +47,8 @@ namespace Map
         /// </summary>
         public GameObject gfx;
 
-        private void Start()
+        private void Awake()
         {
-            GameManager.GetInstance().OnNextTurn += OnNextTurn;
-
             gameObject.SetActive(false);
 
             foreach (Tile tile in adjacentTiles)
@@ -61,6 +59,11 @@ namespace Map
 
             if (state != TileState.Empty)
                 gameObject.SetActive(true);
+        }
+
+        private void Start()
+        {
+            GameManager.GetInstance().OnNextTurn += OnNextTurn;
         }
 
         /// <summary>

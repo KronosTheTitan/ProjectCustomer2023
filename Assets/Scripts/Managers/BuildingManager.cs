@@ -1,9 +1,6 @@
-using System;
 using Managers.BuildTools;
 using Map;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 namespace Managers
 {
@@ -21,7 +18,7 @@ namespace Managers
         [SerializeField] private ExtinguisherTool extinguisherTool;
         [SerializeField] private RandomTileTool randomTileTool;
         [SerializeField] private ReviveTileTool reviveTileTool;
-        
+
         private BuildTool _selectedTool;
 
         private void Update()
@@ -57,9 +54,12 @@ namespace Managers
                 return;
 
             Tile target = hit.collider.gameObject.GetComponent<Tile>();
-            if(target == null)
+
+            if (target == null)
                 return;
+
             targetedTile = target;
+            
         }
 
         private void DeselectToolCancel()

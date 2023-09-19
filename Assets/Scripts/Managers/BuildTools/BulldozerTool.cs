@@ -23,7 +23,7 @@ namespace Managers.BuildTools
 
             target.data = emptyType;
             target.state = TileState.Empty;
-
+            GameManager.GetInstance().TileManager.InvokeOnRemovedTile();
             target.UpdateGFX();
 
             return true;

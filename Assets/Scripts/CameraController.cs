@@ -21,8 +21,10 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private Vector3 minimumPos;
     [SerializeField] private Vector3 maximumPos;
-    [SerializeField] private float minimumZoom = 1;
-    [SerializeField] private float maximumZoom = 10;
+    [SerializeField] private float minimumZoom;
+    [SerializeField] private float maximumZoom;
+
+    [SerializeField] private Color cameraGizmoColor;
 
     private void Start()
     {
@@ -42,25 +44,28 @@ public class CameraController : MonoBehaviour
 
     private void SetCameraBounds(List<Tile> tiles)
     {
-        // Calculate the minimum and maximum positions based on active tiles
-        if (tiles.Count > 0)
+        if (tiles is null || tiles.Count == 0)
         {
-            Vector3 minTilePos = tiles[0].transform.position;
-            Vector3 maxTilePos = tiles[0].transform.position;
-
-            foreach (Tile tile in tiles)
-            {
-                if (!tile.gameObject.activeSelf)
-                    continue;
-
-                minTilePos = Vector3.Min(minTilePos, tile.transform.position);
-                maxTilePos = Vector3.Max(maxTilePos, tile.transform.position);
-            }
-
-            // Set camera positions based on active tiles
-            minimumPos = minTilePos;
-            maximumPos = maxTilePos;
+            Debug.LogError("No tiles for camera bounds!");
+            return; 
         }
+
+        // Initialize minTilePos and maxTilePos with extreme values
+        Vector3 minTilePos = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        Vector3 maxTilePos = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+
+        foreach (Tile tile in tiles)
+        {
+            if (!tile.gameObject.activeSelf)
+                continue;
+
+            minTilePos = Vector3.Min(minTilePos, tile.transform.position);
+            maxTilePos = Vector3.Max(maxTilePos, tile.transform.position);
+        }
+
+        // Set camera positions based on active tiles
+        minimumPos = minTilePos;
+        maximumPos = maxTilePos;
     }
 
     private void CenterCamera()
@@ -188,5 +193,16 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
         targetCamera.transform.localPosition =
             Vector3.Lerp(targetCamera.transform.localPosition, newZoom, Time.deltaTime * movementTime);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Calculate the center and size of the rect
+        Vector3 center = (minimumPos + maximumPos) * 0.5f;
+        Vector3 size = maximumPos - minimumPos;
+
+        // Draw the rect using Gizmos.DrawCube
+        Gizmos.color = cameraGizmoColor;
+        Gizmos.DrawCube(center, size);
     }
 }

@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['objectbuildereditor_0',['ObjectBuilderEditor',['../class_editor_1_1_map_1_1_object_builder_editor.html',1,'Editor::Map']]],
-  ['onafterdeserialize_1',['OnAfterDeserialize',['../class_difficulty_setting.html#aba36935f5e698b81137643e9ad3207d7',1,'DifficultySetting']]],
-  ['onbeforeserialize_2',['OnBeforeSerialize',['../class_difficulty_setting.html#a0e38e78bcb3ca881019e6e26b280ba35',1,'DifficultySetting']]],
-  ['oninspectorgui_3',['OnInspectorGUI',['../class_editor_1_1_map_1_1_object_builder_editor.html#a8a00259c4f6cb89dd2c2851374bb6581',1,'Editor::Map::ObjectBuilderEditor']]],
-  ['onnextturn_4',['onnextturn',['../class_managers_1_1_game_manager.html#a880cb14473576b54a00ab69dbb21b8a9',1,'Managers.GameManager.OnNextTurn'],['../class_map_1_1_hex_tile.html#a1c9618cfb2474432b913df1d341e82af',1,'Map.HexTile.OnNextTurn()']]]
+  ['randomcolor_0',['RandomColor',['../class_random_color.html',1,'']]],
+  ['randomizedtile_1',['RandomizedTile',['../class_map_1_1_randomized_tile.html',1,'Map']]],
+  ['randomizedtileeditor_2',['RandomizedTileEditor',['../class_map_1_1_randomized_tile_editor.html',1,'Map']]],
+  ['randomoffset_3',['randomOffset',['../class_map_1_1_object_spawn_info.html#a5018cee4b856f1f634b0c1b1eb949969',1,'Map::ObjectSpawnInfo']]],
+  ['randomtiletool_4',['RandomTileTool',['../class_managers_1_1_build_tools_1_1_random_tile_tool.html',1,'Managers::BuildTools']]],
+  ['receiveincome_5',['ReceiveIncome',['../class_managers_1_1_economy_manager.html#a19cb11c08a13db93cde18071453c2eb0',1,'Managers::EconomyManager']]],
+  ['removemoney_6',['RemoveMoney',['../class_managers_1_1_economy_manager.html#afa5caa298810be87c28663ad5b8d8964',1,'Managers::EconomyManager']]],
+  ['revenue_7',['revenue',['../class_map_1_1_tile_type.html#a50275da41cfc78d12d5ea40fb636e6c8',1,'Map::TileType']]],
+  ['revivetiletool_8',['ReviveTileTool',['../class_managers_1_1_build_tools_1_1_revive_tile_tool.html',1,'Managers::BuildTools']]]
 ];
