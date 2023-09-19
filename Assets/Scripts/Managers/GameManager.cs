@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -19,6 +20,7 @@ namespace Managers
                 Destroy(this.gameObject); // Destroy this object if another instance exists.
             else
                 _instance = this; // Set this as the singleton instance.
+            SceneManager.sceneUnloaded += MemoryLeakPrevention;
         }
 
         /// <summary>
@@ -98,6 +100,11 @@ namespace Managers
         public void GameOver()
         {
             OnGameOver?.Invoke();
+        }
+
+        private void MemoryLeakPrevention(Scene scene)
+        {
+            _instance = null;
         }
     }
 }
