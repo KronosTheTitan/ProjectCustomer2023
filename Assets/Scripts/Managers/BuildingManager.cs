@@ -1,6 +1,10 @@
 using Managers.BuildTools;
 using Map;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Managers
 {
@@ -21,11 +25,16 @@ namespace Managers
 
         private BuildTool _selectedTool;
 
+        private void Start ()
+        {
+            GameManager.GetInstance().OnNextTurn += DeselectToolCancel;
+        }
+
         private void Update()
         {
             GetTargetedTile();
             
-            if (_selectedTool == null)
+            if (_selectedTool == null) // No tool currently selected
                 return;
 
             if (Input.GetKeyUp(KeyCode.Escape))
@@ -34,10 +43,10 @@ namespace Managers
                 return;
             }
 
-            if (!Input.GetMouseButton(0))
+            if (!Input.GetMouseButton(0)) // No mouse input
                 return;
 
-            if (targetedTile == null)
+            if (targetedTile == null) // No tile targeted by mouse
                 return;
 
             if (_selectedTool.UseTool(targetedTile))
@@ -59,40 +68,53 @@ namespace Managers
                 return;
 
             targetedTile = target;
-            
         }
 
         private void DeselectToolCancel()
         {
+            if (_selectedTool == null)
+                return;
+
             _selectedTool.OnDeselect();
+            _selectedTool.ToggleOff();
             _selectedTool = null;
+            Debug.Log("deselect cancel");
         }
 
         private void DeselectToolSuccess()
         {
             _selectedTool.Charge(targetedTile);
             _selectedTool.OnDeselect();
+            _selectedTool.ToggleOff();
             _selectedTool = null;
+            Debug.Log("deselect success");
         }
 
         /// <summary>
         /// Selects a random tile from the potential tiles list and prepares to place it.
         /// </summary>
-        public void SelectPlaceRandomTile()
+        public void SelectPlaceRandomTile(bool toolSelect)
         {
-            if(!randomTileTool.CanSelect())
+            if (!toolSelect)
+            {
+                DeselectToolCancel();
                 return;
+            }
 
+            randomTileTool.OnSelect();
             _selectedTool = randomTileTool;
         }
 
         /// <summary>
         /// Selects the bulldozer tool to remove tiles.
         /// </summary>
-        public void SelectBulldozer()
+        public void SelectBulldozer(bool toolSelect)
         {
-            if(!bulldozerTool.CanSelect())
+            if (!toolSelect)
+            {
+                DeselectToolCancel();
                 return;
+            }
 
             _selectedTool = bulldozerTool;
         }
@@ -100,12 +122,29 @@ namespace Managers
         /// <summary>
         /// Selects the extinguisher tool to extinguish burning tiles.
         /// </summary>
-        public void SelectExtinguisher()
+        public void SelectExtinguisher(bool toolSelect)
         {
-            if(!extinguisherTool.CanSelect())
+            if (!toolSelect)
+            {
+                DeselectToolCancel();
                 return;
+            }
 
             _selectedTool = extinguisherTool;
+        }
+
+        /// <summary>
+        /// Selects the revive tool to revive burned tiles.
+        /// </summary>
+        public void SelectReviver(bool toolSelect)
+        {
+            if (!toolSelect)
+            {
+                DeselectToolCancel();
+                return;
+            }
+
+            _selectedTool = reviveTileTool;
         }
     }
 }

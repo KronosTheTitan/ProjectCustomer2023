@@ -18,7 +18,18 @@ namespace Managers.BuildTools
         public override bool UseTool(Tile target)
         {
             if (target.state != TileState.Burning)
+            {
+                FlashToggle();
+                ToggleOff();
                 return false;
+            }
+
+            if (!CanSelect())
+            {
+                FlashToggle();
+                ToggleOff();
+                return false;
+            }
 
             target.Extinguish();
 
@@ -26,6 +37,11 @@ namespace Managers.BuildTools
         }
 
         public override void OnDeselect()
+        {
+
+        }
+
+        public override void OnSelect()
         {
             
         }

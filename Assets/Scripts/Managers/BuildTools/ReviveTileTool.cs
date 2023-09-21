@@ -19,13 +19,25 @@ namespace Managers.BuildTools
         {
             if (target.state != TileState.Burning)
                 return false;
-            
+
+            if (!CanSelect())
+            {
+                FlashToggle();
+                ToggleOff();
+                return false;
+            }
+
             target.Revive();
 
             return true;
         }
 
         public override void OnDeselect()
+        {
+
+        }
+
+        public override void OnSelect()
         {
             
         }

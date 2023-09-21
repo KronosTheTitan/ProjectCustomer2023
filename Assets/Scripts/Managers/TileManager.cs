@@ -80,6 +80,9 @@ namespace Managers
 
             foreach (Tile tile in tiles)
             {
+                if(tile.state != TileState.Neutral)
+                    continue;
+                
                 if(!tile.data.isBurnable)
                     continue;
                 

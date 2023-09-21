@@ -21,6 +21,13 @@ namespace Managers.BuildTools
             if (target.state != TileState.Neutral && target.state != TileState.Burned)
                 return false;
 
+            if (!CanSelect())
+            {
+                FlashToggle();
+                ToggleOff();
+                return false;
+            }
+
             target.data = emptyType;
             target.state = TileState.Empty;
             
@@ -32,6 +39,11 @@ namespace Managers.BuildTools
         }
 
         public override void OnDeselect()
+        {
+
+        }
+
+        public override void OnSelect()
         {
             
         }
