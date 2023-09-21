@@ -13,7 +13,8 @@ namespace Managers.BuildTools
         [SerializeField] private TileType campsite;
         [SerializeField] private int campsiteInterval;
         [SerializeField] private int tilesPlaced;
-        public override bool CanSelect()
+
+        public override bool CanPlaceTile()
         {
             selectedTile = potentialTiles[Random.Range(0, potentialTiles.Length - 1)];
 
@@ -29,12 +30,19 @@ namespace Managers.BuildTools
 
         public override bool UseTool(Tile target)
         {
-            if (target == null)
+            if (target == null) // Check no tile
                 return false;
 
-            if (target.state != TileState.Empty)
+            if (target.state != TileState.Empty) // Check empty tile
                 return false;
-            
+
+            if (!CanPlaceTile()) // Check enough resources to place tile
+            {
+                FlashToggle();
+                ToggleOff();
+                return false;
+            }
+
             target.state = TileState.Neutral;
             target.data = selectedTile;
             

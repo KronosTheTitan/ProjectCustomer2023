@@ -7,7 +7,7 @@ namespace Managers.BuildTools
     [Serializable]
     public class ExtinguisherTool : BuildTool
     {
-        public override bool CanSelect()
+        public override bool CanPlaceTile()
         {
             if(Cost > GameManager.GetInstance().EconomyManager.Money) 
                 return false;
@@ -18,7 +18,18 @@ namespace Managers.BuildTools
         public override bool UseTool(Tile target)
         {
             if (target.state != TileState.Burning)
+            {
+                FlashToggle();
+                ToggleOff();
                 return false;
+            }
+
+            if (!CanPlaceTile())
+            {
+                FlashToggle();
+                ToggleOff();
+                return false;
+            }
 
             target.Extinguish();
 
@@ -27,7 +38,7 @@ namespace Managers.BuildTools
 
         public override void OnDeselect()
         {
-            
+
         }
 
         public override void Charge(Tile tile)

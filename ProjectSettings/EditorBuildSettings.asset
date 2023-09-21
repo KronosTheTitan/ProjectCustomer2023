@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestSceneTjalle.unity
     guid: 0b9c8cef25d19c04aafd72fd21e854e0
+  - enabled: 1
+    path: Assets/Scenes/MainSceneNormal.unity
+    guid: b87213e71a3f5374399414b5066084ab
   m_configObjects: {}

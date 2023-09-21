@@ -7,7 +7,7 @@ namespace Managers.BuildTools
     [Serializable]
     public class ReviveTileTool : BuildTool
     {
-        public override bool CanSelect()
+        public override bool CanPlaceTile()
         {
             if(Cost > GameManager.GetInstance().EconomyManager.NaturePoints) 
                 return false;
@@ -19,7 +19,14 @@ namespace Managers.BuildTools
         {
             if (target.state != TileState.Burning)
                 return false;
-            
+
+            if (!CanPlaceTile())
+            {
+                FlashToggle();
+                ToggleOff();
+                return false;
+            }
+
             target.Revive();
 
             return true;
@@ -27,7 +34,7 @@ namespace Managers.BuildTools
 
         public override void OnDeselect()
         {
-            
+
         }
 
         public override void Charge(Tile tile)
