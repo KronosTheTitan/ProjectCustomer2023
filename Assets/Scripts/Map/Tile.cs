@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Managers;
 using Unity.Mathematics;
@@ -46,6 +45,8 @@ namespace Map
         /// The visual representation of the tile.
         /// </summary>
         public GameObject gfx;
+
+        [SerializeField] private AudioSource audioSource;
 
         private void Awake()
         {
@@ -103,6 +104,7 @@ namespace Map
             state = TileState.Burning;
 
             UpdateGFX();
+            PlayIgnitionSound();
         }
 
         /// <summary>
@@ -117,6 +119,7 @@ namespace Map
             state = TileState.Neutral;
 
             UpdateGFX();
+            PlayExtinguishSound();
         }
 
         public void Revive()
@@ -128,6 +131,7 @@ namespace Map
             state = TileState.Neutral;
 
             UpdateGFX();
+            PlayPlaceSound();
         }
 
         /// <summary>
@@ -187,6 +191,24 @@ namespace Map
             }
             
             return output;
+        }
+
+        public void PlayPlaceSound()
+        {
+            audioSource.clip = data.placeSound;
+            audioSource.Play();
+        }
+
+        public void PlayIgnitionSound()
+        {
+            //audioSource.clip = data.igniteSound;
+            //audioSource.Play();
+        }
+
+        public void PlayExtinguishSound()
+        {
+            audioSource.clip = data.extinguishSound;
+            audioSource.Play();
         }
     }
 }

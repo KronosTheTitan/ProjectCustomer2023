@@ -85,7 +85,7 @@ namespace Managers
         /// <summary>
         /// Advances the game to the next turn, handling income, fire spread, and turn count.
         /// </summary>
-        public void NextTurn()
+        public async void NextTurn()
         {
             economyManager.ReceiveIncome(); // Calculate and receive income.
             OnNextTurn?.Invoke(); // Trigger the next turn event.

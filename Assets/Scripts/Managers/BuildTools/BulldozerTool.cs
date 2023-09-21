@@ -25,6 +25,7 @@ namespace Managers.BuildTools
             target.state = TileState.Empty;
             
             target.UpdateGFX();
+            target.PlayPlaceSound();
             GameManager.GetInstance().TileManager.InvokeOnRemovedTile();
 
             return true;

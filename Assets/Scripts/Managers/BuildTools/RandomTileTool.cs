@@ -13,6 +13,7 @@ namespace Managers.BuildTools
         [SerializeField] private TileType campsite;
         [SerializeField] private int campsiteInterval;
         [SerializeField] private int tilesPlaced;
+        public TileType SelectedTile => selectedTile;
         public override bool CanSelect()
         {
             selectedTile = potentialTiles[Random.Range(0, potentialTiles.Length - 1)];
@@ -41,6 +42,7 @@ namespace Managers.BuildTools
             GameManager.GetInstance().EconomyManager.ModifyNaturePoints(target.GetNaturePoints());
             
             target.UpdateGFX();
+            target.PlayPlaceSound();
             GameManager.GetInstance().TileManager.InvokeOnPlacedTile();
 
             tilesPlaced++;
