@@ -127,5 +127,19 @@ namespace Managers
 
             _selectedTool = extinguisherTool;
         }
+
+        /// <summary>
+        /// Selects the revive tool to revive burned tiles.
+        /// </summary>
+        public void SelectReviver(bool toolSelect)
+        {
+            if (!toolSelect)
+            {
+                DeselectToolCancel();
+                return;
+            }
+
+            _selectedTool = reviveTileTool;
+        }
     }
 }
