@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b12ffc1a8b35664199bce5336f88e8f, type: 3}
-  m_Name: Wetlands
+  m_Name: Dirt
   m_EditorClassIdentifier: 
   isBurnable: 0
   isWaterSource: 0
@@ -18,11 +18,11 @@ MonoBehaviour:
   burnTime: 0
   revenue: 0
   natureYield: 0
-  gfxNeutral: {fileID: 6823811456024771720, guid: 5ea6aa11e8a896e48803c4ed858bfbb9, type: 3}
-  gfxBurning: {fileID: 6823811456024771720, guid: 5ea6aa11e8a896e48803c4ed858bfbb9, type: 3}
-  gfxBurned: {fileID: 6823811456024771720, guid: 5ea6aa11e8a896e48803c4ed858bfbb9, type: 3}
+  gfxNeutral: {fileID: 2157246980282465197, guid: 535a3ea8aa1a435469d4876afc103985, type: 3}
+  gfxBurning: {fileID: 2157246980282465197, guid: 535a3ea8aa1a435469d4876afc103985, type: 3}
+  gfxBurned: {fileID: 2157246980282465197, guid: 535a3ea8aa1a435469d4876afc103985, type: 3}
   isNaturePointSource: 0
   fireSpreadChance: 0
-  placeSound: {fileID: 8300000, guid: fd841b5e5b8af154b93e8605ea74216a, type: 3}
+  placeSound: {fileID: 8300000, guid: 5a7e36cbb36e41e4199ecfdde7150c8c, type: 3}
   igniteSound: {fileID: 8300000, guid: 47f6fb3e414cdad40a9dd66ce8d9373b, type: 3}
   extinguishSound: {fileID: 8300000, guid: fd841b5e5b8af154b93e8605ea74216a, type: 3}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b12ffc1a8b35664199bce5336f88e8f, type: 3}
-  m_Name: Tree
+  m_Name: Forrest
   m_EditorClassIdentifier: 
   isBurnable: 1
   isWaterSource: 0
@@ -18,9 +18,9 @@ MonoBehaviour:
   burnTime: 2
   revenue: 0
   natureYield: 3
-  gfxNeutral: {fileID: 1875419238203230185, guid: 947c237b4438eaa44b5e10f04b62869f, type: 3}
-  gfxBurning: {fileID: 9018143617909486171, guid: 8e1bea1756ad2884aa32b0991f0d5fc1, type: 3}
-  gfxBurned: {fileID: 5992579139713005454, guid: 497883ca5e5455d4593909dbd5cd85ed, type: 3}
+  gfxNeutral: {fileID: 7778942505223537003, guid: bb2f653ba3b252646aa77fe99b588219, type: 3}
+  gfxBurning: {fileID: 7390265436652386508, guid: ff9bd27c7ac0c014797b356462990323, type: 3}
+  gfxBurned: {fileID: 377442265276192013, guid: ff2ba234d14de704fba23b2ea5cae22e, type: 3}
   isNaturePointSource: 1
   fireSpreadChance: 15
   placeSound: {fileID: 8300000, guid: 5a7e36cbb36e41e4199ecfdde7150c8c, type: 3}

@@ -18,9 +18,9 @@ MonoBehaviour:
   burnTime: 4
   revenue: 100
   natureYield: 0
-  gfxNeutral: {fileID: 8383705866225314552, guid: 1787436d8c297564b8f87c394b8dfb60, type: 3}
-  gfxBurning: {fileID: 1353201827600719090, guid: 6c2d5311b8c3f2544807c40830ef972b, type: 3}
-  gfxBurned: {fileID: 7192397750150958132, guid: 9502c220bc06f864191bf4706962f82c, type: 3}
+  gfxNeutral: {fileID: 4961776651994519374, guid: 64ff43d12886df544b196cf0adee7b38, type: 3}
+  gfxBurning: {fileID: 3255626393824448726, guid: 973d66e2773ba5143b4768c335fdd53f, type: 3}
+  gfxBurned: {fileID: 471966613972657500, guid: 0bcd72359564b7745a95e529de12da69, type: 3}
   isNaturePointSource: 0
   fireSpreadChance: 0
   placeSound: {fileID: 8300000, guid: 3d80c204f17b5694894ac9820f5a44fd, type: 3}
