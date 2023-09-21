@@ -51,7 +51,6 @@
      <Compile Include="Assets\Scripts\Managers\BuildTools\RandomTileTool.cs" />
      <Compile Include="Assets\Scripts\bopping.cs" />
      <Compile Include="Assets\Scripts\RandomColor.cs" />
-     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <Compile Include="Assets\Scripts\Map\Tile.cs" />
      <Compile Include="Assets\Scripts\Managers\BuildTools\ReviveTileTool.cs" />
      <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
@@ -70,18 +69,15 @@
      <Folder Include="Assets\Graphics\2D art\Cursor" />
      <Folder Include="Assets\Prefabs" />
      <Folder Include="Assets\Scripts\Managers" />
-     <Folder Include="Assets\Graphics\Scripts" />
      <Folder Include="Assets\Graphics\Textures\Materials" />
      <Folder Include="Assets\Graphics\models\Premade Tiles" />
      <Folder Include="Assets\Prefabs\Effects" />
      <Folder Include="Assets\Scenes\MainSceneNormal" />
-     <Folder Include="Assets\TutorialInfo\Scripts" />
      <Folder Include="Assets\Prefabs\Tiles\PreFabs with effects" />
      <Folder Include="Assets\Scenes" />
      <Folder Include="Assets\TileTypes" />
      <Folder Include="Assets\Scripts\UserInterface" />
      <Folder Include="Assets\Graphics\models" />
-     <Folder Include="Assets\TutorialInfo" />
      <Folder Include="Assets\Scripts\Managers\BuildTools" />
      <Folder Include="Assets\Prefabs\Tiles\Premade Tiles" />
      <Folder Include="Assets\Settings" />
@@ -90,7 +86,6 @@
      <Folder Include="Assets\Graphics\Textures" />
      <Folder Include="Assets\Graphics\2D art\Icons" />
      <Folder Include="Assets\Prefabs\Tiles\Foliage" />
-     <Folder Include="Assets\Graphics\PreFabs" />
      <Folder Include="Assets\Prefabs\Tiles\Objects" />
      <Folder Include="Assets\Scenes\ParticleEffects" />
      <Folder Include="Assets\Prefabs\Materials" />
