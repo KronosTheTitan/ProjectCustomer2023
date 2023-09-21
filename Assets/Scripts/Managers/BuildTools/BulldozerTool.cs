@@ -43,6 +43,11 @@ namespace Managers.BuildTools
 
         }
 
+        public override void OnSelect()
+        {
+            
+        }
+
         public override void Charge(Tile tile)
         {
             GameManager.GetInstance().EconomyManager.ModifyMoney(-Cost);

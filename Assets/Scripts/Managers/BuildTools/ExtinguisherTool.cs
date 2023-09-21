@@ -41,6 +41,11 @@ namespace Managers.BuildTools
 
         }
 
+        public override void OnSelect()
+        {
+            
+        }
+
         public override void Charge(Tile tile)
         {
             int localCost = Cost;

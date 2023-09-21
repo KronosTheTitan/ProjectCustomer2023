@@ -78,12 +78,16 @@ namespace Managers
             _selectedTool.OnDeselect();
             _selectedTool.ToggleOff();
             _selectedTool = null;
+            Debug.Log("deselect cancel");
         }
 
         private void DeselectToolSuccess()
         {
             _selectedTool.Charge(targetedTile);
             _selectedTool.OnDeselect();
+            _selectedTool.ToggleOff();
+            _selectedTool = null;
+            Debug.Log("deselect success");
         }
 
         /// <summary>
@@ -97,6 +101,7 @@ namespace Managers
                 return;
             }
 
+            randomTileTool.OnSelect();
             _selectedTool = randomTileTool;
         }
 

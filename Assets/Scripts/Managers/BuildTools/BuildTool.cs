@@ -18,6 +18,7 @@ namespace Managers.BuildTools
         public abstract bool CanSelect();
         public abstract bool UseTool(Tile target);
         public abstract void OnDeselect();
+        public abstract void OnSelect();
         public abstract void Charge(Tile tile);
 
         /// <summary>

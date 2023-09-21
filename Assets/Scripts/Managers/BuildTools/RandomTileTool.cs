@@ -19,16 +19,9 @@ namespace Managers.BuildTools
         [SerializeField] private Sprite unknownSprite;
         public override bool CanSelect()
         {
-            selectedTile = potentialTiles[Random.Range(0, potentialTiles.Length - 1)];
-
-            if (tilesPlaced % campsiteInterval == 0f)
-                selectedTile = campsite;
-            
             int money = GameManager.GetInstance().EconomyManager.Money;
             if (money < Cost)
                 return false;
-
-            buttonImage.sprite = selectedTile.sprite;
             
             return true;
         }
@@ -66,6 +59,18 @@ namespace Managers.BuildTools
         {
             selectedTile = null;
             buttonImage.sprite = unknownSprite;
+            
+            Debug.Log("Deselected the random tile tool");
+        }
+
+        public override void OnSelect()
+        {
+            selectedTile = potentialTiles[Random.Range(0, potentialTiles.Length - 1)];
+
+            if (tilesPlaced % campsiteInterval == 0f)
+                selectedTile = campsite;
+            
+            buttonImage.sprite = selectedTile.sprite;
         }
 
         public override void Charge(Tile tile)
