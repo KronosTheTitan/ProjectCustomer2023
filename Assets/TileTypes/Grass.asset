@@ -26,3 +26,4 @@ MonoBehaviour:
   placeSound: {fileID: 8300000, guid: 5a7e36cbb36e41e4199ecfdde7150c8c, type: 3}
   igniteSound: {fileID: 8300000, guid: 47f6fb3e414cdad40a9dd66ce8d9373b, type: 3}
   extinguishSound: {fileID: 8300000, guid: fd841b5e5b8af154b93e8605ea74216a, type: 3}
+  sprite: {fileID: 21300000, guid: 0e1470236c0178c4da7aad02dcf4c061, type: 3}

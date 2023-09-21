@@ -58,5 +58,6 @@ namespace Map
         public AudioClip placeSound;
         public AudioClip igniteSound;
         public AudioClip extinguishSound;
+        public Sprite sprite;
     }
 }

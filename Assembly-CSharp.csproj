@@ -80,7 +80,6 @@
      <Folder Include="Assets\Graphics\models" />
      <Folder Include="Assets\Scripts\Managers\BuildTools" />
      <Folder Include="Assets\Prefabs\Tiles\Premade Tiles" />
-     <Folder Include="Assets\Settings" />
      <Folder Include="Assets\Scripts" />
      <Folder Include="Assets\Graphics\2D art" />
      <Folder Include="Assets\Graphics\Textures" />

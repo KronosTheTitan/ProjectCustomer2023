@@ -15,7 +15,7 @@ namespace Managers.BuildTools
         [SerializeField] private float failFlashInterval = 0.1f;
         [SerializeField] private Color failFlashColor = Color.red;
         public int Cost => cost;
-        public abstract bool CanPlaceTile();
+        public abstract bool CanSelect();
         public abstract bool UseTool(Tile target);
         public abstract void OnDeselect();
         public abstract void Charge(Tile tile);

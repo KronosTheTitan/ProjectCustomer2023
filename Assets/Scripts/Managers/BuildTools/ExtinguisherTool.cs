@@ -7,7 +7,7 @@ namespace Managers.BuildTools
     [Serializable]
     public class ExtinguisherTool : BuildTool
     {
-        public override bool CanPlaceTile()
+        public override bool CanSelect()
         {
             if(Cost > GameManager.GetInstance().EconomyManager.Money) 
                 return false;
@@ -24,7 +24,7 @@ namespace Managers.BuildTools
                 return false;
             }
 
-            if (!CanPlaceTile())
+            if (!CanSelect())
             {
                 FlashToggle();
                 ToggleOff();

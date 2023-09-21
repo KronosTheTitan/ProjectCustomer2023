@@ -1,6 +1,7 @@
 ﻿using System;
 using Map;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Managers.BuildTools
@@ -13,7 +14,9 @@ namespace Managers.BuildTools
         [SerializeField] private TileType campsite;
         [SerializeField] private int campsiteInterval;
         [SerializeField] private int tilesPlaced;
-        public TileType SelectedTile => selectedTile;
+
+        [SerializeField] private Image buttonImage;
+        [SerializeField] private Sprite unknownSprite;
         public override bool CanSelect()
         {
             selectedTile = potentialTiles[Random.Range(0, potentialTiles.Length - 1)];
@@ -24,6 +27,8 @@ namespace Managers.BuildTools
             int money = GameManager.GetInstance().EconomyManager.Money;
             if (money < Cost)
                 return false;
+
+            buttonImage.sprite = selectedTile.sprite;
             
             return true;
         }
@@ -36,7 +41,7 @@ namespace Managers.BuildTools
             if (target.state != TileState.Empty) // Check empty tile
                 return false;
 
-            if (!CanPlaceTile()) // Check enough resources to place tile
+            if (!CanSelect()) // Check enough resources to place tile
             {
                 FlashToggle();
                 ToggleOff();
@@ -60,6 +65,7 @@ namespace Managers.BuildTools
         public override void OnDeselect()
         {
             selectedTile = null;
+            buttonImage.sprite = unknownSprite;
         }
 
         public override void Charge(Tile tile)

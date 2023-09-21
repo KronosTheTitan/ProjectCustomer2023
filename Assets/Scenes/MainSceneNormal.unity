@@ -10106,12 +10106,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetedTile: {fileID: 0}
   bulldozerTool:
+    toggleButton: {fileID: 0}
     cost: 30
+    failFlashDuration: 2
+    failFlashInterval: 0.1
+    failFlashColor: {r: 1, g: 0, b: 0, a: 1}
     emptyType: {fileID: 11400000, guid: 45f59e6f2abe8e04f9c8c7358d35ae07, type: 2}
   extinguisherTool:
+    toggleButton: {fileID: 0}
     cost: 100
+    failFlashDuration: 2
+    failFlashInterval: 0.1
+    failFlashColor: {r: 1, g: 0, b: 0, a: 1}
   randomTileTool:
+    toggleButton: {fileID: 0}
     cost: 50
+    failFlashDuration: 2
+    failFlashInterval: 0.1
+    failFlashColor: {r: 1, g: 0, b: 0, a: 1}
     potentialTiles:
     - {fileID: 11400000, guid: 466f6b11eb213da4c9394ad6cbfb2593, type: 2}
     - {fileID: 11400000, guid: 6fbf2caaad3ee0142b557e4e01bf2b4d, type: 2}
@@ -10120,8 +10132,14 @@ MonoBehaviour:
     campsite: {fileID: 11400000, guid: 3895f57a472a0ce4d900df3febee320f, type: 2}
     campsiteInterval: 5
     tilesPlaced: 0
+    buttonImage: {fileID: 1341459270}
+    unknownSprite: {fileID: 21300000, guid: a7efecaaaa993fe45811bc78eafb617e, type: 3}
   reviveTileTool:
+    toggleButton: {fileID: 0}
     cost: 100
+    failFlashDuration: 2
+    failFlashInterval: 0.1
+    failFlashColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &565383341
 Transform:
   m_ObjectHideFlags: 0
@@ -15281,6 +15299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyText: {fileID: 508383689}
   natureText: {fileID: 82651509}
+  turnText: {fileID: 0}
 --- !u!114 &949471252
 MonoBehaviour:
   m_ObjectHideFlags: 0
