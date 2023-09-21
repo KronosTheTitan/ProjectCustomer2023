@@ -54,5 +54,9 @@ namespace Map
         public bool isNaturePointSource;
         [Range(0,100)]
         public int fireSpreadChance;
+
+        public AudioClip placeSound;
+        public AudioClip igniteSound;
+        public AudioClip extinguishSound;
     }
 }
