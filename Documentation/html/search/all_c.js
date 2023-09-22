@@ -1,11 +1,12 @@
 var searchData=
 [
-  ['selectbulldozer_0',['SelectBulldozer',['../class_managers_1_1_building_manager.html#ae7679dc1218748758e577df6cef32ebf',1,'Managers::BuildingManager']]],
-  ['selectextinguisher_1',['SelectExtinguisher',['../class_managers_1_1_building_manager.html#aace1f842fd00449c55aebc0ba2333be0',1,'Managers::BuildingManager']]],
-  ['selectplacerandomtile_2',['SelectPlaceRandomTile',['../class_managers_1_1_building_manager.html#ad30dd33fc7c9b41890ad95c034574066',1,'Managers::BuildingManager']]],
-  ['spawnchance_3',['spawnChance',['../class_map_1_1_object_spawn_info.html#ac471b185486980f20a569736054db8ba',1,'Map::ObjectSpawnInfo']]],
-  ['spreadfire_4',['SpreadFire',['../class_managers_1_1_tile_manager.html#a016a57a8411e35ac0b5502e7a9ec09b3',1,'Managers::TileManager']]],
-  ['startrandomfire_5',['StartRandomFire',['../class_managers_1_1_tile_manager.html#a422f413b761cdd1b4b1b6a27d9cb6c09',1,'Managers::TileManager']]],
-  ['state_6',['state',['../class_map_1_1_tile.html#a38df6f70830a403f9910e3222a46e6c5',1,'Map::Tile']]],
-  ['statelastchangedduringturn_7',['stateLastChangedDuringTurn',['../class_map_1_1_tile.html#a048cc0613dab0ab68d6bff07567ee659',1,'Map::Tile']]]
+  ['randomcolor_0',['RandomColor',['../class_random_color.html',1,'']]],
+  ['randomizedtile_1',['RandomizedTile',['../class_map_1_1_randomized_tile.html',1,'Map']]],
+  ['randomizedtileeditor_2',['RandomizedTileEditor',['../class_map_1_1_randomized_tile_editor.html',1,'Map']]],
+  ['randomoffset_3',['randomOffset',['../class_map_1_1_object_spawn_info.html#a5018cee4b856f1f634b0c1b1eb949969',1,'Map::ObjectSpawnInfo']]],
+  ['randomtiletool_4',['RandomTileTool',['../class_managers_1_1_build_tools_1_1_random_tile_tool.html',1,'Managers::BuildTools']]],
+  ['receiveincome_5',['ReceiveIncome',['../class_managers_1_1_economy_manager.html#a19cb11c08a13db93cde18071453c2eb0',1,'Managers::EconomyManager']]],
+  ['removemoney_6',['RemoveMoney',['../class_managers_1_1_economy_manager.html#afa5caa298810be87c28663ad5b8d8964',1,'Managers::EconomyManager']]],
+  ['revenue_7',['revenue',['../class_map_1_1_tile_type.html#a50275da41cfc78d12d5ea40fb636e6c8',1,'Map::TileType']]],
+  ['revivetiletool_8',['ReviveTileTool',['../class_managers_1_1_build_tools_1_1_revive_tile_tool.html',1,'Managers::BuildTools']]]
 ];
