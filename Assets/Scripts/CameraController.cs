@@ -24,6 +24,10 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minimumZoom;
     [SerializeField] private float maximumZoom;
 
+    [SerializeField] private float minTiltAngle = 10f;
+    [SerializeField] private float maxTiltAngle = 45f;
+
+    [Header("Camera range settings")]
     [SerializeField] private Color cameraGizmoColor;
 
     [SerializeField] private float xAdjust = 2.0f;
@@ -90,6 +94,7 @@ public class CameraController : MonoBehaviour
     {
         HandleMouseInput();
         HandleMovementInput();
+        CameraTiltOnZoom();
     }
 
     private void HandleMouseInput()
@@ -98,7 +103,7 @@ public class CameraController : MonoBehaviour
         {
             newZoom -= Input.mouseScrollDelta.y * zoomAmount;
         }
-            
+
         if (Input.GetMouseButtonDown(2))
         {
             Plane plane = new Plane(Vector3.up, Vector3.zero);
@@ -196,6 +201,16 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
         targetCamera.transform.localPosition =
             Vector3.Lerp(targetCamera.transform.localPosition, newZoom, Time.deltaTime * movementTime);
+    }
+    
+    private void CameraTiltOnZoom()
+    {
+        float zoomLevel = targetCamera.transform.localPosition.y;
+        float desiredTiltAngle = Mathf.Lerp(minTiltAngle, maxTiltAngle, Mathf.Clamp01(Mathf.InverseLerp(minimumZoom, maximumZoom, zoomLevel)));
+
+        // Apply the wanted tilt angle to the camera's rotation
+        Quaternion desiredRotation = Quaternion.Euler(desiredTiltAngle, targetCamera.transform.localEulerAngles.y, targetCamera.transform.localEulerAngles.z);
+        targetCamera.transform.localRotation = Quaternion.Lerp(targetCamera.transform.localRotation, desiredRotation, Time.deltaTime * movementTime);
     }
 
     private void OnDrawGizmosSelected()

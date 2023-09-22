@@ -183,20 +183,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 6401435909535804652}
-  movementSpeedNormal: 0.2
-  movementSpeedFast: 1
-  movementTime: 2
-  rotationAmount: 0.25
-  zoomAmount: {x: 0, y: 0, z: 0}
-  newPosition: {x: 7.5, y: 0, z: 6.062175}
-  newRotation: {x: 0, y: 0, z: 0, w: 0}
-  newZoom: {x: 1, y: 0, z: -1}
+  movementSpeedNormal: 0.015
+  movementSpeedFast: 0.25
+  movementTime: 2.48
+  rotationAmount: 0.13
+  zoomAmount: {x: 0, y: 0.15, z: -0.15}
+  newPosition: {x: 8.786617, y: 0, z: 5.384657}
+  newRotation: {x: 0, y: -0.6410586, z: 0, w: 0.76737446}
+  newZoom: {x: 0, y: 7.071068, z: -7.071068}
   dragStartPosition: {x: 0, y: 0, z: 0}
   dragCurrentPosition: {x: 0, y: 0, z: 0}
-  minimumPos: {x: 0, y: 0, z: 0}
-  maximumPos: {x: 15, y: 0, z: 14.72242}
+  minimumPos: {x: 5, y: 0, z: 2.598075}
+  maximumPos: {x: 13, y: 0, z: 9.526275}
   minimumZoom: 1
   maximumZoom: 10
+  minTiltAngle: 30
+  maxTiltAngle: 60
   cameraGizmoColor: {r: 0.97404873, g: 1, b: 0, a: 0.18431373}
   xAdjust: 2
   zAdjust: 1.73205
