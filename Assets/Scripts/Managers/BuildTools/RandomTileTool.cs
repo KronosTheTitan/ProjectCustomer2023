@@ -41,15 +41,17 @@ namespace Managers.BuildTools
                 return false;
             }
 
+            OnSelect();
+
             target.state = TileState.Neutral;
             target.data = selectedTile;
-            
+
             GameManager.GetInstance().EconomyManager.ModifyNaturePoints(target.GetNaturePoints());
-            
+
             target.UpdateGFX();
             target.PlayPlaceSound();
             GameManager.GetInstance().TileManager.InvokeOnPlacedTile();
-
+            
             tilesPlaced++;
 
             return true;
@@ -59,13 +61,11 @@ namespace Managers.BuildTools
         {
             selectedTile = null;
             buttonImage.sprite = unknownSprite;
-            
-            Debug.Log("Deselected the random tile tool");
         }
 
         public override void OnSelect()
         {
-            selectedTile = potentialTiles[Random.Range(0, potentialTiles.Length - 1)];
+            selectedTile = potentialTiles[Random.Range(0, potentialTiles.Length)];
 
             if (tilesPlaced % campsiteInterval == 0f)
                 selectedTile = campsite;
