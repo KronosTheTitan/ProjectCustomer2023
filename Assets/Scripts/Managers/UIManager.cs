@@ -17,7 +17,7 @@ namespace Managers
 
         void Update()
         {
-            moneyText.text = "$" + GameManager.GetInstance().EconomyManager.Money;
+            moneyText.text = GameManager.GetInstance().EconomyManager.Money.ToString();
             natureText.text = GameManager.GetInstance().EconomyManager.NaturePoints.ToString();
             turnText.text = GameManager.GetInstance().TurnNumber.ToString();
         }
