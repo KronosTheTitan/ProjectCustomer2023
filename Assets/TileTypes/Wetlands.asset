@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b12ffc1a8b35664199bce5336f88e8f, type: 3}
   m_Name: Wetlands
   m_EditorClassIdentifier: 
-  IsBurnable: 0
-  IsWaterSource: 1
-  CanRecover: 1
+  isBurnable: 0
+  isWaterSource: 0
+  canRecover: 0
   burnTime: 0
-  recoveryTime: 0
-  gfxNeutral: {fileID: 3286271890560108552, guid: d317297df8682504195f47feead176b2, type: 3}
-  gfxBurning: {fileID: 3286271890560108552, guid: f119bdb256f419b4f9928b9a2cdd55e9, type: 3}
-  gfxRecovering: {fileID: 3286271890560108552, guid: 6346504313d11764aa9073a13488be75, type: 3}
+  revenue: 0
+  natureYield: 0
+  gfxNeutral: {fileID: 6823811456024771720, guid: 5ea6aa11e8a896e48803c4ed858bfbb9, type: 3}
+  gfxBurning: {fileID: 6823811456024771720, guid: 5ea6aa11e8a896e48803c4ed858bfbb9, type: 3}
+  gfxBurned: {fileID: 6823811456024771720, guid: 5ea6aa11e8a896e48803c4ed858bfbb9, type: 3}
+  isNaturePointSource: 0
+  fireSpreadChance: 0
+  placeSound: {fileID: 8300000, guid: fd841b5e5b8af154b93e8605ea74216a, type: 3}
+  igniteSound: {fileID: 8300000, guid: 47f6fb3e414cdad40a9dd66ce8d9373b, type: 3}
+  extinguishSound: {fileID: 8300000, guid: fd841b5e5b8af154b93e8605ea74216a, type: 3}
+  sprite: {fileID: 21300000, guid: 44083304e8b474c4585c9105cb2b8ac7, type: 3}

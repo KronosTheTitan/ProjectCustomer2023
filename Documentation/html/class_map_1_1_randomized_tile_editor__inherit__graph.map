@@ -1,0 +1,5 @@
+<map id="Map.RandomizedTileEditor" name="Map.RandomizedTileEditor">
+<area shape="rect" id="Node000001" title="Custom editor for the RandomizedTile class." alt="" coords="5,80,182,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="30,5,157,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,47,96,80,91,80,91,47"/>
+</map>

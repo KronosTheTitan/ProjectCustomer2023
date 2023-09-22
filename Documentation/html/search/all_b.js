@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['objectbuildereditor_0',['ObjectBuilderEditor',['../class_editor_1_1_map_1_1_object_builder_editor.html',1,'Editor::Map']]],
-  ['onafterdeserialize_1',['OnAfterDeserialize',['../class_difficulty_setting.html#aba36935f5e698b81137643e9ad3207d7',1,'DifficultySetting']]],
-  ['onbeforeserialize_2',['OnBeforeSerialize',['../class_difficulty_setting.html#a0e38e78bcb3ca881019e6e26b280ba35',1,'DifficultySetting']]],
-  ['oninspectorgui_3',['OnInspectorGUI',['../class_editor_1_1_map_1_1_object_builder_editor.html#a8a00259c4f6cb89dd2c2851374bb6581',1,'Editor::Map::ObjectBuilderEditor']]],
-  ['onnextturn_4',['onnextturn',['../class_managers_1_1_game_manager.html#a880cb14473576b54a00ab69dbb21b8a9',1,'Managers.GameManager.OnNextTurn'],['../class_map_1_1_hex_tile.html#a1c9618cfb2474432b913df1d341e82af',1,'Map.HexTile.OnNextTurn()']]]
+  ['pausemenu_0',['PauseMenu',['../class_user_interface_1_1_pause_menu.html',1,'UserInterface']]],
+  ['public_5fconst_5fnumber_1',['PUBLIC_CONST_NUMBER',['../class_example_class.html#acb0b3aa596869c5aeb3e17b95bcb4331',1,'ExampleClass']]],
+  ['publicexamplemethod_2',['PublicExampleMethod',['../class_example_class.html#a4009131d8ff1eee4e288c56a9326ffed',1,'ExampleClass']]],
+  ['publicnumber_3',['publicNumber',['../class_example_class.html#a95d5eb92d7b94086844c2b656546a1a5',1,'ExampleClass']]],
+  ['publicstaticnumber_4',['PublicStaticNumber',['../class_example_class.html#ab263bceadeddb943e16b80638d1ef90e',1,'ExampleClass']]]
 ];

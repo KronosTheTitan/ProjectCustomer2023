@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['targetedtile_0',['targetedTile',['../class_managers_1_1_building_manager.html#ae2ac2674e765fbd2e224e290ae49050a',1,'Managers::BuildingManager']]],
-  ['type_1',['type',['../struct_tile_chance_pair.html#aee4416542c200e32e8fb42dbb66485dd',1,'TileChancePair']]]
+  ['spawnchance_0',['spawnChance',['../class_map_1_1_object_spawn_info.html#ac471b185486980f20a569736054db8ba',1,'Map::ObjectSpawnInfo']]],
+  ['state_1',['state',['../class_map_1_1_tile.html#a38df6f70830a403f9910e3222a46e6c5',1,'Map::Tile']]],
+  ['statelastchangedduringturn_2',['stateLastChangedDuringTurn',['../class_map_1_1_tile.html#a048cc0613dab0ab68d6bff07567ee659',1,'Map::Tile']]]
 ];

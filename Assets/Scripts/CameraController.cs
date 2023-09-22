@@ -1,15 +1,17 @@
 using Managers;
+using Map;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Camera targetCamera;
     
-    [SerializeField] private float movementSpeedNormal;
-    [SerializeField] private float movementSpeedFast;
-    [SerializeField] private float movementTime;
-    [SerializeField] private float rotationAmount;
-    [SerializeField] private Vector3 zoomAmount;
+    [SerializeField] private float movementSpeedNormal = 0.03f;
+    [SerializeField] private float movementSpeedFast = 0.06f;
+    [SerializeField] private float movementTime = 8.07f;
+    [SerializeField] private float rotationAmount = 0.18f;
+    [SerializeField] private Vector3 zoomAmount = new Vector3(0, 0.15f, -0.15f);
     
     [SerializeField] private Vector3 newPosition;
     [SerializeField] private Quaternion newRotation;
@@ -22,17 +24,77 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minimumZoom;
     [SerializeField] private float maximumZoom;
 
+    [SerializeField] private float minTiltAngle = 10f;
+    [SerializeField] private float maxTiltAngle = 45f;
+
+    [Header("Camera range settings")]
+    [SerializeField] private Color cameraGizmoColor;
+
+    [SerializeField] private float xAdjust = 2.0f;
+    [SerializeField] private float zAdjust = 1.73205f;
+
     private void Start()
     {
         newPosition = transform.position;
         newRotation = transform.rotation;
         newZoom = targetCamera.transform.localPosition;
+
+        // Subscribe to tile placement and removal events
+        TileManager tileManager = GameManager.GetInstance().TileManager;
+        tileManager.OnPlacedTile += OnTilePlaced;
+        tileManager.OnRemovedTile += OnTileRemoved;
+
+        // Initialize camera bounds based on the current state of the grid
+        SetCameraBounds(tileManager.Tiles);
+        CenterCamera();
+    }
+
+    private void SetCameraBounds(List<Tile> tiles)
+    {
+        if (tiles is null || tiles.Count == 0)
+        {
+            Debug.LogError("No tiles for camera bounds!");
+            return; 
+        }
+
+        // Initialize minTilePos and maxTilePos with extreme values
+        Vector3 minTilePos = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        Vector3 maxTilePos = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+
+        foreach (Tile tile in tiles)
+        {
+            if (!tile.gameObject.activeSelf)
+                continue;
+
+            minTilePos = Vector3.Min(minTilePos, tile.transform.position);
+            maxTilePos = Vector3.Max(maxTilePos, tile.transform.position);
+        }
+
+        // Set camera positions based on active tiles
+        minimumPos = minTilePos - (new Vector3(xAdjust, 0, zAdjust) / 2);
+        maximumPos = maxTilePos + (new Vector3(xAdjust, 0, zAdjust) / 2);
+    }
+
+    private void CenterCamera()
+    {
+        newPosition = (minimumPos + maximumPos) / 2;
+    }
+
+    private void OnTilePlaced()
+    {
+        SetCameraBounds(GameManager.GetInstance().TileManager.Tiles);
+    }
+
+    private void OnTileRemoved()
+    {
+        SetCameraBounds(GameManager.GetInstance().TileManager.Tiles);
     }
 
     private void LateUpdate()
     {
         HandleMouseInput();
         HandleMovementInput();
+        CameraTiltOnZoom();
     }
 
     private void HandleMouseInput()
@@ -41,7 +103,7 @@ public class CameraController : MonoBehaviour
         {
             newZoom -= Input.mouseScrollDelta.y * zoomAmount;
         }
-            
+
         if (Input.GetMouseButtonDown(2))
         {
             Plane plane = new Plane(Vector3.up, Vector3.zero);
@@ -126,6 +188,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetKey(KeyCode.Tab))
         {
             newRotation = Quaternion.identity;
+            CenterCamera();
         }
 
         newPosition.x = Mathf.Clamp(newPosition.x, minimumPos.x, maximumPos.x);
@@ -138,5 +201,26 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
         targetCamera.transform.localPosition =
             Vector3.Lerp(targetCamera.transform.localPosition, newZoom, Time.deltaTime * movementTime);
+    }
+    
+    private void CameraTiltOnZoom()
+    {
+        float zoomLevel = targetCamera.transform.localPosition.y;
+        float desiredTiltAngle = Mathf.Lerp(minTiltAngle, maxTiltAngle, Mathf.Clamp01(Mathf.InverseLerp(minimumZoom, maximumZoom, zoomLevel)));
+
+        // Apply the wanted tilt angle to the camera's rotation
+        Quaternion desiredRotation = Quaternion.Euler(desiredTiltAngle, targetCamera.transform.localEulerAngles.y, targetCamera.transform.localEulerAngles.z);
+        targetCamera.transform.localRotation = Quaternion.Lerp(targetCamera.transform.localRotation, desiredRotation, Time.deltaTime * movementTime);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Calculate the center and size of the rect
+        Vector3 center = (minimumPos + maximumPos) * 0.5f;
+        Vector3 size = maximumPos - minimumPos;
+
+        // Draw the rect using Gizmos.DrawCube
+        Gizmos.color = cameraGizmoColor;
+        Gizmos.DrawCube(center, size);
     }
 }

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['difficulty_0',['Difficulty',['../class_managers_1_1_game_manager.html#a0005e220f93bbfefb54b1b389383ca96',1,'Managers::GameManager']]]
+  ['money_0',['Money',['../class_managers_1_1_economy_manager.html#a7363f71a10187e7c109a1ee6bfb16b9c',1,'Managers::EconomyManager']]]
 ];

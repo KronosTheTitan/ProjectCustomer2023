@@ -1,0 +1,5 @@
+<map id="Managers.BuildTools.RandomTileTool" name="Managers.BuildTools.RandomTileTool">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,200,123"/>
+<area shape="rect" id="Node000002" href="$class_managers_1_1_build_tools_1_1_build_tool.html" title=" " alt="" coords="65,5,140,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,47,105,80,100,80,100,47"/>
+</map>

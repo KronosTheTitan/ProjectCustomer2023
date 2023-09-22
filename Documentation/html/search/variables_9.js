@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['state_0',['state',['../class_map_1_1_hex_tile.html#a1323cddea87f84decb4b48c13213c052',1,'Map::HexTile']]],
-  ['statelastchangedduringturn_1',['stateLastChangedDuringTurn',['../class_map_1_1_hex_tile.html#a9c9a89d02e1fe33bd9ac29895d4c9283',1,'Map::HexTile']]]
+  ['randomoffset_0',['randomOffset',['../class_map_1_1_object_spawn_info.html#a5018cee4b856f1f634b0c1b1eb949969',1,'Map::ObjectSpawnInfo']]],
+  ['revenue_1',['revenue',['../class_map_1_1_tile_type.html#a50275da41cfc78d12d5ea40fb636e6c8',1,'Map::TileType']]]
 ];

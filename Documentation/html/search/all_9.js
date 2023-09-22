@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['managers_0',['Managers',['../namespace_managers.html',1,'']]],
-  ['map_1',['Map',['../namespace_map.html',1,'']]],
-  ['money_2',['Money',['../class_managers_1_1_economy_manager.html#a7363f71a10187e7c109a1ee6bfb16b9c',1,'Managers::EconomyManager']]]
+  ['nextturn_0',['NextTurn',['../class_managers_1_1_game_manager.html#abadef4b0d90709b1e67a05e76fb1e3bc',1,'Managers::GameManager']]]
 ];

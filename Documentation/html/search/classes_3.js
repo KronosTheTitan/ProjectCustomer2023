@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['economymanager_0',['EconomyManager',['../class_managers_1_1_economy_manager.html',1,'Managers']]],
-  ['exampleclass_1',['ExampleClass',['../class_example_class.html',1,'']]]
+  ['gamemanager_0',['GameManager',['../class_managers_1_1_game_manager.html',1,'Managers']]]
 ];

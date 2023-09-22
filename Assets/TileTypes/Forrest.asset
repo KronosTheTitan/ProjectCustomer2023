@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b12ffc1a8b35664199bce5336f88e8f, type: 3}
+  m_Name: Forrest
+  m_EditorClassIdentifier: 
+  isBurnable: 1
+  isWaterSource: 0
+  canRecover: 1
+  burnTime: 2
+  revenue: 0
+  natureYield: 3
+  gfxNeutral: {fileID: 7778942505223537003, guid: bb2f653ba3b252646aa77fe99b588219, type: 3}
+  gfxBurning: {fileID: 7390265436652386508, guid: ff9bd27c7ac0c014797b356462990323, type: 3}
+  gfxBurned: {fileID: 377442265276192013, guid: ff2ba234d14de704fba23b2ea5cae22e, type: 3}
+  isNaturePointSource: 1
+  fireSpreadChance: 15
+  placeSound: {fileID: 8300000, guid: 5a7e36cbb36e41e4199ecfdde7150c8c, type: 3}
+  igniteSound: {fileID: 8300000, guid: 47f6fb3e414cdad40a9dd66ce8d9373b, type: 3}
+  extinguishSound: {fileID: 8300000, guid: fd841b5e5b8af154b93e8605ea74216a, type: 3}
+  sprite: {fileID: 21300000, guid: f9d8d95a41291d6458a819e93c09d570, type: 3}
